@@ -1,0 +1,16 @@
+<!-- app.component.html -->
+
+<div class="login-container">
+    <div class="centered">
+      <div class="login-box">
+        <h1 class="login-heading">Login to Easy QR Tag</h1>
+        <form class="login-form" #loginForm="ngForm" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <input placeholder="Enter Contact" class="form-control" id="contact" [(ngModel)]="contact" name="contact" required>
+          </div>
+          <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid">Login</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  
