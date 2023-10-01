@@ -18,6 +18,8 @@ import { AccountPageComponent } from './account-page/account-page.component';
 import { QRCodeModule } from 'angular2-qrcode';
 import { QrPageComponent } from './qr-page/qr-page.component';
 
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 
 @NgModule({
   declarations: [
@@ -31,6 +33,7 @@ import { QrPageComponent } from './qr-page/qr-page.component';
   ],
   imports: [
     BrowserModule,
+    NgbModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,

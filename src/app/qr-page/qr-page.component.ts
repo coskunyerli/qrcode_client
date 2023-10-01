@@ -8,7 +8,7 @@ import { QRUserRelationResponseInterface } from '../interfaces/qrUserRelationRes
 @Component({
   selector: 'app-qr-page',
   templateUrl: './qr-page.component.html',
-  styleUrls: ['./qr-page.component.css']
+  styleUrls: ['./qr-page.component.css', '../../styles.scss', '../../styles.css']
 })
 export class QrPageComponent {
   qrID: string = '';
@@ -22,14 +22,7 @@ export class QrPageComponent {
       this.http.get<CheckQRResponseInterface>(`${AppSettings.BASE_URL}/qr/${qrID}`).subscribe({
         next: data => {
           if (data.has) {
-            this.http.get<QRUserRelationResponseInterface>(`${AppSettings.BASE_URL}/userqrrelation/${data.userQRRelationID}`).subscribe({
-              next: data => {
-                console.log(data);
-              },
-              error: error => {
-
-              }
-            })
+            this.getUserRelatedToQR(data);
           } else {
             this.router.navigate(['/register'], { queryParams: { qr: qrID } })
           }
@@ -38,5 +31,16 @@ export class QrPageComponent {
         }
       });
     });
+  }
+
+  getUserRelatedToQR(data: CheckQRResponseInterface){
+    this.http.get<QRUserRelationResponseInterface>(`${AppSettings.BASE_URL}/userqrrelation/${data.userQRRelationID}`).subscribe({
+      next: data => {
+        console.log(data);
+      },
+      error: error => {
+
+      }
+    })
   }
 }

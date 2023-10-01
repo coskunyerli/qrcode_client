@@ -8,7 +8,7 @@ import { QRUserRelationResponseInterface } from '../interfaces/qrUserRelationRes
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  styleUrls: ['./register.component.css', '../../styles.scss', '../../styles.css']
 })
 export class RegisterComponent {
 

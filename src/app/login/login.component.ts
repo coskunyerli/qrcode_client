@@ -7,7 +7,7 @@ import { AppSettings } from '../constants';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css', '../../styles.scss', '../../styles.css']
 })
 export class LoginComponent {
   contact: string = ''
@@ -24,7 +24,8 @@ export class LoginComponent {
           console.log(data);
         },
         error: error => {
-          console.error('There was an error!', error);
+          const contactName = this.contact;
+          console.error(`Could not find an account related to ${contactName}`, error);
           //this.otpValue = '';
         }
       });
