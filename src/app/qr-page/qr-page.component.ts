@@ -31,12 +31,22 @@ export class QrPageComponent {
               }
             })
           } else {
-            this.router.navigate(['/register'], { queryParams: { qr: qrID } })
+            //this.router.navigate(['/register'], { queryParams: { qr: qrID } })
           }
         }, error: error => {
           console.log(`Unexpected error exists Error is ${error}`)
         }
       });
     });
+  }
+
+  editQRCode() {
+    //navigate detail qr page and enable edit in my acoount endpoint
+  }
+  qrFoundByPerson() {
+    // navigate contact page of founded person enter contact text or add message 
+  }
+  registerQR() {
+    // register qr related user
   }
 }
