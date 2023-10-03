@@ -40,13 +40,11 @@ export class QrPageComponent {
     });
   }
 
-  editQRCode() {
+  myQRCode() {
     //navigate detail qr page and enable edit in my acoount endpoint
+    //register if the qr code has not been registered yet
   }
   qrFoundByPerson() {
     // navigate contact page of founded person enter contact text or add message 
-  }
-  registerQR() {
-    // register qr related user
   }
 }

@@ -1,3 +1,47 @@
+
+
+<section class="vh-100 gradient-custom">
+  <div class="fixed-top">
+    <img src="../../assets/qr_logo.png" class="rounded mx-auto d-block img-fluid" alt="QR Code Logo"
+      style="width: 100px; height: 100px;">
+  </div>
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12 col-md-8 col-lg-6 col-xl-5" style="width: 600px;">
+        <div class="card shadow-2-strong" style="border-radius: 1rem;">
+          <div class="card-body p-5 text-center">
+            <h1 style="font-size: xx-large;">Hello</h1>
+            <p class="text-justify" style="text-align: left;">
+              If this is not your QR Code, we would like to inform you that you found a lost item.
+              In order to proceed, please select if this is your QR Code or a QR Code you have found.
+            </p>
+
+            <hr class="my-4">
+
+            <button class="btn btn-outline-primary btn-lg btn-block col-md-5 col-sm-12 me-2" (click)="myQRCode()" type="button">This Is My QR Code</button>
+            <button class="btn btn-outline-primary btn-lg btn-block col-md-5 col-sm-12" (click)="qrFoundByPerson()" type="button">I Found The QR Code</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
+
 <section class="vh-100 gradient-custom">
   <div class="fixed-top">
     <img src="../../assets/qr_logo.png" class="rounded mx-auto d-block img-fluid" alt="QR Code Logo"
@@ -10,10 +54,13 @@
           <div class="card-body p-5 text-center">
             <button class="btn btn-outline-primary btn-lg btn-block col-md-5 col-sm-12 me-2" (click)="editQRCode()" type="button">Edit QR Code</button>
             <button class="btn btn-outline-primary btn-lg btn-block col-md-5 col-sm-12" (click)="qrFoundByPerson()" type="button">I Found QR Code</button>
-            <!-- <button class="btn btn-outline-primary btn-lg btn-block col-md-12 col-sm-12" (click)="registerQR()" type="button">Register QR Code</button> -->
+            <button class="btn btn-outline-primary btn-lg btn-block col-md-12 col-sm-12" (click)="registerQR()" type="button">Register QR Code</button>
           </div>
         </div>
       </div>
     </div>
   </div>
 </section>
+
+
+-->

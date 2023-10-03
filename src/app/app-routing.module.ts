@@ -6,6 +6,7 @@ import { LoginComponent } from './login/login.component';
 import { authGuard, hasAuthGuard } from './guards/auth.guard';
 import { AccountPageComponent } from './account-page/account-page.component';
 import { QrPageComponent } from './qr-page/qr-page.component';
+import { NoContentPageComponent } from './no-content-page/no-content-page';
 
 const routes: Routes = [
   {
@@ -28,7 +29,14 @@ const routes: Routes = [
     component: AccountPageComponent,
     canActivate: [authGuard]
   },
-  { path: ':id', component: QrPageComponent },
+  { 
+    path: 'qr/:id', component: QrPageComponent 
+  },
+  { 
+    path: '**',
+    pathMatch: 'full', 
+    component: NoContentPageComponent
+  },
 ];
 
 @NgModule({

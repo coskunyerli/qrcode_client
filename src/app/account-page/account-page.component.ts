@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { AppSettings } from '../constants';
 
 @Component({
   selector: 'app-account-page',
@@ -12,7 +13,7 @@ export class AccountPageComponent {
     this.getList();
   }
   getList() {
-    this.http.get<any>('http://127.0.0.1:8000/qr').subscribe({
+    this.http.get<any>(`${AppSettings.BASE_URL}/qr`).subscribe({
       next: data => {
         console.log(data);
       },
@@ -20,5 +21,15 @@ export class AccountPageComponent {
         console.error('There was an error!', error);
       }
     });
+  }
+
+  qrCodeId = "NaN"
+  qrEMail = "NaN"
+  qrPhoneNumber = "NaN"
+
+  onClickOnQR(e:string){
+    this.qrCodeId = e;
+    this.qrEMail = e + "@email.com"
+    this.qrPhoneNumber = "0" + e + "9876";
   }
 }

@@ -1,43 +1,19 @@
-.chat-container {
-    margin-top: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 20px;
-  }
-  
-  .chat-message {
-    padding: 10px;
-    margin: 10px;
-    border-radius: 5px;
-  }
-  
-  .user {
-    background-color: #007bff;
-    color: white;
-    text-align: right;
-  }
+.nav-pills > li.active > a,
+.nav-pills > li.active > a:hover,
+.nav-pills > li.active > a:focus {
+    background-color: rgb(73, 240, 145);
+    color: #ffffff;
+}
 
-  .list-view {
-    background-color: #f8f9fa;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    height: 100%; /* Ensure the list view fills the height of the container */
-  }
-  
-  .list-view h4 {
-    margin-bottom: 10px;
-  }
-  
-  .list-group-item {
-    cursor: pointer;
-  }
-  
-  /* Style the selected list item if needed */
-  .list-group-item.active {
-    background-color: #007bff;
-    color: white;
-  }
-  
-  /* Add more styles for different types of messages (e.g., bot) here */
-  
+
+
+.qr-image-list-item{
+  padding: 10px;
+}
+
+
+.sort-hover-active {
+  background-color: rgb(73, 240, 145) !important;
+}
+
+
