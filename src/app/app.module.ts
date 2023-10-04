@@ -17,6 +17,10 @@ import { AuthService } from './services/auth/auth.service';
 import { AccountPageComponent } from './account-page/account-page.component';
 import { QRCodeModule } from 'angular2-qrcode';
 import { QrPageComponent } from './qr-page/qr-page.component';
+import { RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { MainPageComponent } from './main-page/main-page.component';
+import { NoContentPageComponent } from './no-content-page/no-content-page';
 
 
 @NgModule({
@@ -28,13 +32,17 @@ import { QrPageComponent } from './qr-page/qr-page.component';
     InputFieldComponent,
     AccountPageComponent,
     QrPageComponent,
+    NoContentPageComponent,
+    MainPageComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    CommonModule,
+    RouterModule
   ],
   providers: [
     AuthService,

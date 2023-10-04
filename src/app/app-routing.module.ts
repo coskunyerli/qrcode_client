@@ -7,6 +7,7 @@ import { authGuard, hasAuthGuard } from './guards/auth.guard';
 import { AccountPageComponent } from './account-page/account-page.component';
 import { QrPageComponent } from './qr-page/qr-page.component';
 import { NoContentPageComponent } from './no-content-page/no-content-page';
+import { MainPageComponent } from './main-page/main-page.component';
 
 const routes: Routes = [
   {
@@ -32,11 +33,17 @@ const routes: Routes = [
   { 
     path: 'qr/:id', component: QrPageComponent 
   },
+  {
+    path: '',
+    pathMatch: 'full',
+    component: MainPageComponent
+  },
   { 
     path: '**',
     pathMatch: 'full', 
     component: NoContentPageComponent
-  },
+  }
+  
 ];
 
 @NgModule({
