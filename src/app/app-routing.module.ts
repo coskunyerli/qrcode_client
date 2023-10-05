@@ -11,6 +11,11 @@ import { MainPageComponent } from './main-page/main-page.component';
 
 const routes: Routes = [
   {
+    path: '',
+    pathMatch: 'full',
+    component: MainPageComponent
+  },
+  {
     path: 'register',
     component: RegisterComponent,
     canActivate: [authGuard]
@@ -31,12 +36,7 @@ const routes: Routes = [
     canActivate: [authGuard]
   },
   { 
-    path: 'qr/:id', component: QrPageComponent 
-  },
-  {
-    path: '',
-    pathMatch: 'full',
-    component: MainPageComponent
+    path: ':id', component: QrPageComponent 
   },
   { 
     path: '**',
