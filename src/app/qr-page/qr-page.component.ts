@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AppSettings } from '../constants';
 import { CheckQRResponseInterface } from '../interfaces/checkQRResponseInterface'
-import { QRUserRelationResponseInterface } from '../interfaces/qrUserRelationResponseInterface'
+import { QRUserRelationDetailResponseInterface } from '../interfaces/qrUserRelationResponseInterface'
 
 @Component({
   selector: 'app-qr-page',
@@ -22,7 +22,7 @@ export class QrPageComponent {
       this.http.get<CheckQRResponseInterface>(`${AppSettings.BASE_URL}/qr/${qrID}`).subscribe({
         next: data => {
           if (data.has) {
-            this.http.get<QRUserRelationResponseInterface>(`${AppSettings.BASE_URL}/userqrrelation/${data.userQRRelationID}`).subscribe({
+            this.http.get<QRUserRelationDetailResponseInterface>(`${AppSettings.BASE_URL}/userqrrelation/${data.userQRRelationID}`).subscribe({
               next: data => {
                 console.log(data);
               },
@@ -40,11 +40,19 @@ export class QrPageComponent {
     });
   }
 
-  myQRCode() {
+  editQRCode() {
+    if (this.qrID.length === 0) {
+      return;
+    }
+
+    this.router.navigate(['/my_account'], { queryParams: { qrCode: this.qrID } })
     //navigate detail qr page and enable edit in my acoount endpoint
     //register if the qr code has not been registered yet
   }
   qrFoundByPerson() {
+    if (this.qrID.length === 0) {
+      return;
+    }
     // navigate contact page of founded person enter contact text or add message 
   }
 }

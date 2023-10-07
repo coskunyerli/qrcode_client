@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AppSettings } from '../constants';
 import { CheckQRResponseInterface } from '../interfaces/checkQRResponseInterface'
-import { QRUserRelationResponseInterface } from '../interfaces/qrUserRelationResponseInterface'
+import { QRUserRelationDetailResponseInterface } from '../interfaces/qrUserRelationResponseInterface'
 
 @Component({
   selector: 'app-qr-page',

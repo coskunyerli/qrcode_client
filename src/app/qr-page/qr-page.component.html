@@ -1,5 +1,3 @@
-
-
 <section class="vh-100 gradient-custom">
   <div class="fixed-top">
     <img src="../../assets/qr_logo.png" class="rounded mx-auto d-block img-fluid" alt="QR Code Logo"
@@ -17,9 +15,12 @@
             </p>
 
             <hr class="my-4">
+            <div class="d-flex flex-row">
+              <button mat-button class="col-6" color="primary" (click)="editQRCode()">This Is My QR Code</button>
+              <button mat-raised-button class="col-6" color="primary" (click)="qrFoundByPerson()">I Found The QR
+                Code</button>
+            </div>
 
-            <button class="btn btn-outline-primary btn-lg btn-block col-md-5 col-sm-12 me-2" (click)="myQRCode()" type="button">This Is My QR Code</button>
-            <button class="btn btn-outline-primary btn-lg btn-block col-md-5 col-sm-12" (click)="qrFoundByPerson()" type="button">I Found The QR Code</button>
           </div>
         </div>
       </div>

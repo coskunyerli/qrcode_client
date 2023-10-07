@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CheckQRResponseInterface } from '../interfaces/checkQRResponseInterface';
 import { AppSettings } from '../constants';
-import { QRUserRelationResponseInterface } from '../interfaces/qrUserRelationResponseInterface';
+import { QRUserRelationDetailResponseInterface } from '../interfaces/qrUserRelationResponseInterface';
 
 @Component({
   selector: 'app-register',

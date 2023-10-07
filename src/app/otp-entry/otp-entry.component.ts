@@ -21,7 +21,7 @@ export class OtpEntryComponent {
   contact: string = ''
   constructor(
     private authService: AuthService,
-    public route: ActivatedRoute,
+    private route: ActivatedRoute,
     private router: Router,
     private userService: UserService) {
     route.data.subscribe(data => console.log(data));
