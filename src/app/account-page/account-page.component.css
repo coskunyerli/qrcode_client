@@ -23,3 +23,11 @@
 .spacer {
   flex: 1 1 auto;
 }
+
+.qr-list-header {
+  border-bottom: 1px solid #aaaaaa;
+}
+
+.qr_item_detail {
+  border-bottom: 1px solid #aaaaaa;
+}

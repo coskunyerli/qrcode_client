@@ -55,7 +55,7 @@ export class OtpEntryComponent {
             let redirectUrl = localStorage.getItem('redirectUrl');
             if (!!redirectUrl) {
               localStorage.removeItem('redirectUrl');
-              this.router.navigate([redirectUrl]);
+              this.router.navigateByUrl(redirectUrl);
             }
             else {
               this.router.navigate(['/my_account'])
