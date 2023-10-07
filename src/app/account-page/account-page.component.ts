@@ -38,7 +38,6 @@ export class AccountPageComponent {
 
   onClickOnQR(index: number) {
     this.selectedIndex = index;
-    console.log(index);
   }
   logoutUser() {
     this.authService.logoutUser();
