@@ -18,7 +18,7 @@ export class OtpEntryComponent {
   otpValue4: string = '';
   otpValue5: string = '';
   otpValue6: string = '';
-  contact: string | null = ''
+  contact: string = ''
   constructor(
     private authService: AuthService,
     public route: ActivatedRoute,
@@ -29,7 +29,16 @@ export class OtpEntryComponent {
 
   ngOnInit() {
     this.route.queryParamMap.subscribe(data => {
-      this.contact = data.get('contact');
+      if (!data.has('contact')) {
+        this.router.navigate(['/login']);
+      } else {
+        this.contact = data.get('contact') || '';
+        this.userService.userHasOTPValue(this.contact).subscribe(result => {
+          if (!result) {
+            this.router.navigate(['/login']);
+          }
+        });
+      }
     });
   }
   onSubmit() {
@@ -45,6 +54,7 @@ export class OtpEntryComponent {
             this.authService.loginUser(data.token);
             let redirectUrl = localStorage.getItem('redirectUrl');
             if (!!redirectUrl) {
+              localStorage.removeItem('redirectUrl');
               this.router.navigate([redirectUrl]);
             }
             else {

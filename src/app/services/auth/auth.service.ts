@@ -7,6 +7,7 @@ export class AuthService {
     constructor(private http: HttpClient) {
 
     }
+
     public getToken(): string {
         return localStorage.getItem('token') || '';
     }
@@ -26,15 +27,19 @@ export class AuthService {
             return this.http.put(`${AppSettings.BASE_URL}/login`, { token: token }).pipe(map((res: any) => {
                 return res.has;
             }),
-            catchError((error) => {
-                return of(false);
-            })
+                catchError((error) => {
+                    return of(false);
+                })
             );
         }
     }
 
     public loginUser(token: string) {
         localStorage.setItem('token', token);
+    }
+
+    public logoutUser(){
+        localStorage.removeItem('token');
     }
 
 }

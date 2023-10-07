@@ -1,6 +1,6 @@
 <section class="vh-100 gradient-custom">
-  <div class="fixed-top">
-    <img src="../../assets/qr_logo.png" class="rounded mx-auto d-block img-fluid" alt="QR Code Logo" style="width: 100px; height: 100px;">
+  <div class="fixed-top mt-4">
+      <img src="../../assets/qr_logo.png" class="rounded mx-auto d-block img-fluid" alt="QR Code Logo" style="width: 100px; height: 100px;">
   </div>
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
@@ -8,14 +8,17 @@
         <div class="card shadow-2-strong" style="border-radius: 1rem;">
           <div class="card-body p-5 text-center">
 
-            <h1 class="mb-5">Login To Your QR Code Account</h1>
+            <h1 class="mb-5">Login/Create Account</h1>
 
             <form class="login-form" #loginForm="ngForm" (ngSubmit)="onSubmit()">
-              <div class="form-outline mb-4">
-                <input placeholder="Enter Contact" type="email" id="contact" [(ngModel)]="contact" class="form-control form-control-lg" name="contact" required/>
-              </div>
-              
-              <button class="btn btn-outline-primary btn-lg btn-block" type="submit" [disabled]="loginForm.invalid">Login</button>
+              <mat-form-field class="w-100">
+                <mat-label>Enter Contact</mat-label>
+                <input matInput type="email" id="contact" [(ngModel)]="contact" name="contact" required email/>
+                <mat-error *ngIf="loginForm.invalid">
+                  Please enter a valid email address
+                </mat-error>
+              </mat-form-field>
+              <button class="w-50" mat-raised-button color="primary" type="submit" [disabled]="loginForm.invalid">Login</button>
             </form>
           </div>
         </div>

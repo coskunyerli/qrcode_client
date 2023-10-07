@@ -1,62 +1,55 @@
-<div class="container-fluid">
-  <div class="row justify-content-start">
-    <div class="col-md-4" style="height: 100vh; width:220px;">
-      <Grid>
-        <Grid.RowDefinitions>
-          <RowDefinition Height="Auto" />
-          <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-      
-        <div class="col-md-4" style="height: 100vh; width:220px; overflow-y: scroll;"><!--200px + 10px padding on each side = 220px-->
-          <ul class="list-group">
-            <li class="list-group-item qr-image-list-item rounded" role="button" (click)="onClickOnQR('111111')">
-              <img src="../../assets/qr_logo.png" alt="your_image" height="200" width="200" class="rounded mx-auto d-block img-fluid">
-            </li>
-            <li class="list-group-item qr-image-list-item rounded" role="button" (click)="onClickOnQR('222222')">
-              <img src="../../assets/qr_logo.png" alt="your_image" height="200" width="200" class="rounded mx-auto d-block img-fluid">
-            </li>
-            <li class="list-group-item qr-image-list-item rounded" role="button" (click)="onClickOnQR('333333')">
-              <img src="../../assets/qr_logo.png" alt="your_image" height="200" width="200" class="rounded mx-auto d-block img-fluid">
-            </li>
-            <li class="list-group-item qr-image-list-item rounded" role="button" (click)="onClickOnQR('444444')">
-              <img src="../../assets/qr_logo.png" alt="your_image" height="200" width="200" class="rounded mx-auto d-block img-fluid">
-            </li>
-          </ul>
-        </div>
-      </Grid>
+<div class="h-100">
+  <mat-toolbar>
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span>Easy QR Tag</span>
+    <span class="spacer"></span>
+    <button (click)="logoutUser()" mat-icon-button aria-label="Logout" matTooltip="Logout">
+      <mat-icon>logout</mat-icon>
+    </button>
+  </mat-toolbar>
+
+  <div class="d-flex flex-row h-100">
+    <div class="col-md-4 border">
+      <mat-selection-list>
+        <div matSubheader>QR Items</div>
+        <mat-list-item [ngClass]="{'current-selected-item' : selectedIndex === i}" (click)="onClickOnQR(i)"
+          *ngFor="let qrItem of qrList; index as i">
+          <div matListItemTitle>{{qrItem.qrCode.id}}</div>
+          <div matListItemLine>{{qrItem.message}}</div>
+        </mat-list-item>
+      </mat-selection-list>
     </div>
-    <div class="col-md-8">
-      <div class="card">
-        <div class="card-body">
-          <h1 class="card-title">QR Code {{qrCodeId}} Details</h1>
-        </div>
+    <div class="col-md-8 border">
+      <div *ngIf="selectedIndex > -1" class="container-fluid col-12">
+        <h2 class="card-title">QR Detail</h2>
+        <mat-slide-toggle class="w-100" color="primary">
+          Show Phone Number
+        </mat-slide-toggle>
 
-        <br>
-        
-        <div class="card-body">
-          <h2 class="card-title">E-Mail Address</h2>
-          <h3 class="card-text">{{qrEMail}}</h3>
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-            <label class="form-check-label" for="flexCheckChecked">
-              Show my phone number
-            </label>
-          </div>
-        </div>
+        <mat-slide-toggle class="w-100" color="primary">
+          Show Message
+        </mat-slide-toggle>
 
-        <br>
+        <mat-slide-toggle class="w-100" color="primary">
+          QR in Use
+        </mat-slide-toggle>
 
-        <div class="card-body">
-          <h2 class="card-title">Phone Number</h2>
-          <h3 class="card-text">{{qrPhoneNumber}}</h3>
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
-            <label class="form-check-label" for="flexCheckChecked">
-              Show my phone number
-            </label>
-          </div>
-        </div>
+        <mat-slide-toggle class="w-100" color="primary">
+          Accept Contact
+        </mat-slide-toggle>
+
+        <mat-form-field>
+          <mat-label>Choose an option</mat-label>
+          <mat-select>
+            <mat-option value="invisible">Invisible</mat-option>
+            <mat-option value="visible">Visible</mat-option>
+            <mat-option value="message_visible">Message Visible</mat-option>
+          </mat-select>
+        </mat-form-field>
       </div>
+
     </div>
   </div>
 </div>

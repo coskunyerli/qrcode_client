@@ -1,5 +1,5 @@
 <section class="vh-100 gradient-custom">
-  <div class="fixed-top">
+  <div class="fixed-top mt-4">
     <img src="../../assets/qr_logo.png" class="rounded mx-auto d-block img-fluid" alt="QR Code Logo" style="width: 100px; height: 100px;">
   </div>
   <div class="container py-5 h-100">
@@ -11,21 +11,25 @@
             <h1 class="mb-5">Enter OTP Value</h1>
 
             <form class="login-form" #loginForm="ngForm" (ngSubmit)="onSubmit()">
-              <input type="email" id="contact" [(ngModel)]="contact" class="form-control form-control-lg" name="contact" disabled="true" required/>
+
+              <mat-form-field class="w-100">
+                <mat-label>Enter Contact</mat-label>
+                <input matInput type="email" id="contact" [(ngModel)]="contact" name="contact" disabled="true" required/>
+              </mat-form-field>
 
               <br>
               <div class="form-outline mb-4">
-                <input class="code_input" name="otp1" [(ngModel)]="otpValue1" required>
-                <input class="code_input" name="otp2" [(ngModel)]="otpValue2" required>
-                <input class="code_input" name="otp3" [(ngModel)]="otpValue3" required>
-                <input class="code_input" name="otp4" [(ngModel)]="otpValue4" required>
-                <input class="code_input" name="otp5" [(ngModel)]="otpValue5" required>
-                <input class="code_input" name="otp6" [(ngModel)]="otpValue6" required>
+                <input class="code_input" pattern="^[0-9]$" maxlength="1" name="otp1" [(ngModel)]="otpValue1" required>
+                <input class="code_input" pattern="^[0-9]$" maxlength="1" name="otp2" [(ngModel)]="otpValue2" required>
+                <input class="code_input" pattern="^[0-9]$" maxlength="1" name="otp3" [(ngModel)]="otpValue3" required>
+                <input class="code_input" pattern="^[0-9]$" maxlength="1" name="otp4" [(ngModel)]="otpValue4" required>
+                <input class="code_input" pattern="^[0-9]$" maxlength="1" name="otp5" [(ngModel)]="otpValue5" required>
+                <input class="code_input" pattern="^[0-9]$" maxlength="1" name="otp6" [(ngModel)]="otpValue6" required>
               </div>
 
               <!-- <input type="hidden" name="full_Code" id="fullCode" value=""> -->
               
-              <button class="btn btn-outline-primary btn-lg btn-block" type="submit" [disabled]="loginForm.invalid">Confirm</button>
+              <button mat-raised-button color="primary" class="w-50" type="submit" [disabled]="loginForm.invalid">Confirm</button>
             </form>
           </div>
         </div>

@@ -46,8 +46,8 @@
 
 .code_input:focus{
   outline: none;
-  border: 1px solid rgb(73, 240, 145);
+  border: 1px solid rgb(47, 61, 169);
   color: #000000;
-  box-shadow:0 0 3px rgb(140, 215, 172);
+  box-shadow:0 0 3px rgb(47, 61, 169);
 }
 /* Rest of the styles remain the same */

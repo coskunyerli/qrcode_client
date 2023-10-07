@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, catchError, map, of } from 'rxjs';
 import { AppSettings } from 'src/app/constants';
 import { LoginUserResponseInterface, VerifyUserResponseInterface } from 'src/app/interfaces/loginUserResponseInterface';
 
@@ -20,5 +20,15 @@ export class UserService {
       contact: contact,
       otp: otp
     });
+  }
+
+  userHasOTPValue(contact: string): Observable<boolean> {
+    return this.http.put(`${AppSettings.BASE_URL}/login/verify`, { contact: contact }).pipe(map((res: any) => {
+      return res.has;
+    }),
+      catchError((error) => {
+        return of(false);
+      })
+    );
   }
 }
