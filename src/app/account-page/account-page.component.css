@@ -25,9 +25,9 @@
 }
 
 .qr-list-header {
-  border-bottom: 1px solid #aaaaaa;
+  border-bottom: 1px solid var(--bs-border-color);
 }
 
 .qr_item_detail {
-  border-bottom: 1px solid #aaaaaa;
+  border-bottom: 1px solid var(--bs-border-color);
 }

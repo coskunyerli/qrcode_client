@@ -38,6 +38,14 @@ export class AccountPageComponent {
 
   onClickOnQR(index: number) {
     this.selectedIndex = index;
+    // update url without navigate 
+    this.router.navigate(
+      [],
+      {
+        relativeTo: this.route,
+        queryParams: { qrCode: this.qrList[this.selectedIndex].qrCode.id },
+        queryParamsHandling: 'merge', // remove to replace all query params by provided
+      });
   }
   logoutUser() {
     this.authService.logoutUser();
