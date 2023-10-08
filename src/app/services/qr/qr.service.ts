@@ -2,7 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AppSettings } from 'src/app/constants';
-import { QRUserRelationResponseInterface } from 'src/app/interfaces/qrUserRelationResponseInterface';
+import { CheckQRResponseInterface, CheckUserRelationResponseInterface } from 'src/app/interfaces/checkQRResponseInterface';
+import { QRUserRelationDetailResponseInterface, QRUserRelationResponseInterface } from 'src/app/interfaces/qrUserRelationResponseInterface';
 
 @Injectable({
   providedIn: 'root'
@@ -11,12 +12,16 @@ export class QrService {
 
   constructor(private http: HttpClient) { }
 
-  hasUserQRRelation(qrID: string): boolean {
-    return true;
+  checkUserQRRelation(qrID: string): Observable<CheckUserRelationResponseInterface> {
+    return this.http.get<CheckUserRelationResponseInterface>(`${AppSettings.BASE_URL}/qr/check/${qrID}`);
   }
 
-  getUserQRRelation(id: number): object {
-    return {};
+  checkQRExist(qrID: string): Observable<CheckQRResponseInterface> {
+    return this.http.put<CheckQRResponseInterface>(`${AppSettings.BASE_URL}/qr/check/`, { qrID: qrID });
+  }
+
+  getUserQRRelationDetail(id: number): Observable<QRUserRelationDetailResponseInterface> {
+    return this.http.get<QRUserRelationDetailResponseInterface>(`${AppSettings.BASE_URL}/userqrrelation/${id}`);
   }
 
   createUserQRRelation(data: object): object {

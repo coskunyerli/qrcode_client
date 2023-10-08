@@ -16,6 +16,10 @@ const routes: Routes = [
     component: MainPageComponent
   },
   {
+    path: 'not_found',
+    component: NoContentPageComponent
+  },
+  {
     path: 'register',
     component: RegisterComponent,
     canActivate: [authGuard]
@@ -35,15 +39,15 @@ const routes: Routes = [
     component: AccountPageComponent,
     canActivate: [authGuard]
   },
-  { 
-    path: ':id', component: QrPageComponent 
+  {
+    path: ':id', component: QrPageComponent
   },
-  { 
+  {
     path: '**',
-    pathMatch: 'full', 
+    pathMatch: 'full',
     component: NoContentPageComponent
   }
-  
+
 ];
 
 @NgModule({
