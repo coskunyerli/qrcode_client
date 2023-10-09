@@ -1,19 +1,39 @@
-<!-- app.component.html -->
+<section class="vh-100 gradient-custom">
+  <div class="fixed-top mt-4">
+    <img src="../../assets/qr_logo.png" class="rounded mx-auto d-block img-fluid" alt="QR Code Logo" style="width: 100px; height: 100px;">
+  </div>
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12 col-md-8 col-lg-6 col-xl-5" style="width: 600px;">
+        <div class="card shadow-2-strong" style="border-radius: 1rem;">
+          <div class="card-body p-5 text-center">
 
-<div class="login-container">
-    <div class="centered">
-      <div class="login-box">
-        <h1 class="login-heading">Login to ChatGPT</h1>
-        <form class="login-form" #loginForm="ngForm" (ngSubmit)="onSubmit()">
-          <div class="form-group">
-            <input placeholder="Enter Contact" class="form-control" id="contact" [(ngModel)]="contact" name="contact" required>
+            <h1 class="mb-5">Enter OTP Value</h1>
+
+            <form class="login-form" #loginForm="ngForm" (ngSubmit)="onSubmit()">
+
+              <mat-form-field class="w-100">
+                <mat-label>Enter Contact</mat-label>
+                <input matInput type="email" id="contact" [(ngModel)]="contact" name="contact" disabled="true" required/>
+              </mat-form-field>
+
+              <br>
+              <div class="form-outline mb-4">
+                <input class="code_input" pattern="^[0-9]$" maxlength="1" name="otp1" [(ngModel)]="otpValue1" required>
+                <input class="code_input" pattern="^[0-9]$" maxlength="1" name="otp2" [(ngModel)]="otpValue2" required>
+                <input class="code_input" pattern="^[0-9]$" maxlength="1" name="otp3" [(ngModel)]="otpValue3" required>
+                <input class="code_input" pattern="^[0-9]$" maxlength="1" name="otp4" [(ngModel)]="otpValue4" required>
+                <input class="code_input" pattern="^[0-9]$" maxlength="1" name="otp5" [(ngModel)]="otpValue5" required>
+                <input class="code_input" pattern="^[0-9]$" maxlength="1" name="otp6" [(ngModel)]="otpValue6" required>
+              </div>
+
+              <!-- <input type="hidden" name="full_Code" id="fullCode" value=""> -->
+              
+              <button mat-raised-button color="primary" class="w-50" type="submit" [disabled]="loginForm.invalid">Confirm</button>
+            </form>
           </div>
-          <div class="form-group">
-            <input placeholder="Enter Otp" class="form-control" id="otp" [(ngModel)]="otpValue" name="otp" required>
-          </div>
-          <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid">Login</button>
-        </form>
+        </div>
       </div>
     </div>
   </div>
-  
+</section>

@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { AuthService } from '../services/auth/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AppSettings } from '../constants';
+import { UserService } from '../services/user/user.service';
 
 @Component({
   selector: 'app-otp-entry',
@@ -11,29 +12,53 @@ import { AppSettings } from '../constants';
 })
 export class OtpEntryComponent {
 
-  otpValue: string = '';
-  contact: string | null = ''
-  constructor(private http: HttpClient, private authService: AuthService, public route: ActivatedRoute, private router: Router) {
+  otpValue1: string = '';
+  otpValue2: string = '';
+  otpValue3: string = '';
+  otpValue4: string = '';
+  otpValue5: string = '';
+  otpValue6: string = '';
+  contact: string = ''
+  constructor(
+    private authService: AuthService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private userService: UserService) {
     route.data.subscribe(data => console.log(data));
   }
 
   ngOnInit() {
     this.route.queryParamMap.subscribe(data => {
-      this.contact = data.get('contact');
+      if (!data.has('contact')) {
+        this.router.navigate(['/login']);
+      } else {
+        this.contact = data.get('contact') || '';
+        this.userService.userHasOTPValue(this.contact).subscribe(result => {
+          if (!result) {
+            this.router.navigate(['/login']);
+          }
+        });
+      }
     });
   }
   onSubmit() {
-    if (!this.authService.isAuthenticated()) {
+    if (!this.authService.isLocalAuthenticated()) {
       if (!this.contact) {
         //this.router.navigate(['no_page'])
         // show no page
       } else {
-        this.http.post<any>(`${AppSettings.BASE_URL}/login/verify`, { contact: this.contact, otp: this.otpValue }).subscribe({
+        let otp = this.otpValue1 + this.otpValue2 + this.otpValue3 + this.otpValue4 + this.otpValue5 + this.otpValue6;
+        this.userService.verifyUser(this.contact, otp).subscribe({
+
           next: data => {
             this.authService.loginUser(data.token);
             let redirectUrl = localStorage.getItem('redirectUrl');
             if (!!redirectUrl) {
-              this.router.navigate([redirectUrl]);
+              localStorage.removeItem('redirectUrl');
+              this.router.navigateByUrl(redirectUrl);
+            }
+            else {
+              this.router.navigate(['/my_account'])
             }
           },
           error: error => {

@@ -11,7 +11,7 @@ import { Observable } from 'rxjs';
 export class TokenInterceptor implements HttpInterceptor {
     constructor(public auth: AuthService) { }
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        if (this.auth.isAuthenticated()) {
+        if (this.auth.isLocalAuthenticated()) {
             request = request.clone({
                 setHeaders: {
                     Authorization: `Token ${this.auth.getToken()}`

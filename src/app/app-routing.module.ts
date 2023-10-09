@@ -6,8 +6,19 @@ import { LoginComponent } from './login/login.component';
 import { authGuard, hasAuthGuard } from './guards/auth.guard';
 import { AccountPageComponent } from './account-page/account-page.component';
 import { QrPageComponent } from './qr-page/qr-page.component';
+import { NoContentPageComponent } from './no-content-page/no-content-page';
+import { MainPageComponent } from './main-page/main-page.component';
 
 const routes: Routes = [
+  {
+    path: '',
+    pathMatch: 'full',
+    component: MainPageComponent
+  },
+  {
+    path: 'not_found',
+    component: NoContentPageComponent
+  },
   {
     path: 'register',
     component: RegisterComponent,
@@ -28,7 +39,15 @@ const routes: Routes = [
     component: AccountPageComponent,
     canActivate: [authGuard]
   },
-  { path: ':id', component: QrPageComponent },
+  {
+    path: ':id', component: QrPageComponent
+  },
+  {
+    path: '**',
+    pathMatch: 'full',
+    component: NoContentPageComponent
+  }
+
 ];
 
 @NgModule({

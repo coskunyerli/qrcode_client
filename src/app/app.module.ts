@@ -17,6 +17,20 @@ import { AuthService } from './services/auth/auth.service';
 import { AccountPageComponent } from './account-page/account-page.component';
 import { QRCodeModule } from 'angular2-qrcode';
 import { QrPageComponent } from './qr-page/qr-page.component';
+import { RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { MainPageComponent } from './main-page/main-page.component';
+import { NoContentPageComponent } from './no-content-page/no-content-page';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatSelectModule } from '@angular/material/select';
+import { MatListModule } from '@angular/material/list';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatIconModule} from '@angular/material/icon';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 
 @NgModule({
@@ -28,13 +42,27 @@ import { QrPageComponent } from './qr-page/qr-page.component';
     InputFieldComponent,
     AccountPageComponent,
     QrPageComponent,
+    NoContentPageComponent,
+    MainPageComponent
   ],
   imports: [
+    MatTooltipModule,
+    MatIconModule,
+    MatToolbarModule,
+    MatMenuModule,
+    MatButtonToggleModule,
+    MatListModule,
+    MatSelectModule,
+    MatSlideToggleModule,
+    MatButtonModule,
+    MatInputModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    CommonModule,
+    RouterModule
   ],
   providers: [
     AuthService,

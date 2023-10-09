@@ -3,7 +3,8 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AppSettings } from '../constants';
 import { CheckQRResponseInterface } from '../interfaces/checkQRResponseInterface'
-import { QRUserRelationResponseInterface } from '../interfaces/qrUserRelationResponseInterface'
+import { QRUserRelationDetailResponseInterface } from '../interfaces/qrUserRelationResponseInterface'
+import { QrService } from '../services/qr/qr.service';
 
 @Component({
   selector: 'app-qr-page',
@@ -12,31 +13,50 @@ import { QRUserRelationResponseInterface } from '../interfaces/qrUserRelationRes
 })
 export class QrPageComponent {
   qrID: string = '';
-  constructor(private route: ActivatedRoute, private http: HttpClient, private router: Router) {
+  constructor(private route: ActivatedRoute, private http: HttpClient, private router: Router, private qrService: QrService) {
 
   }
   ngOnInit() {
     this.route.params.subscribe((params) => {
       let qrID: string = params['id'];
       this.qrID = qrID;
-      this.http.get<CheckQRResponseInterface>(`${AppSettings.BASE_URL}/qr/${qrID}`).subscribe({
+      this.qrService.checkQRExist(qrID).subscribe({
         next: data => {
-          if (data.has) {
-            this.http.get<QRUserRelationResponseInterface>(`${AppSettings.BASE_URL}/userqrrelation/${data.userQRRelationID}`).subscribe({
-              next: data => {
-                console.log(data);
-              },
-              error: error => {
-
-              }
-            })
+          if (!data.has) {
+            this.router.navigate(['not_found']);
           } else {
-            this.router.navigate(['/register'], { queryParams: { qr: qrID } })
+            this.qrService.checkUserQRRelation(qrID).subscribe({
+              next: data => {
+                if (data.has) {
+                  let id = data.userQRRelationID || -1;
+                  this.qrService.getUserQRRelationDetail(id).subscribe({})
+                } else {
+                  this.router.navigate(['/register'], { queryParams: { qr: qrID } })
+                }
+              }, error: error => {
+                console.log(`Unexpected error exists Error is ${error}`)
+              }
+            });
           }
-        }, error: error => {
-          console.log(`Unexpected error exists Error is ${error}`)
         }
-      });
+      })
+
     });
+  }
+
+  editQRCode() {
+    if (this.qrID.length === 0) {
+      return;
+    }
+
+    this.router.navigate(['/my_account'], { queryParams: { qrCode: this.qrID } })
+    //navigate detail qr page and enable edit in my acoount endpoint
+    //register if the qr code has not been registered yet
+  }
+  qrFoundByPerson() {
+    if (this.qrID.length === 0) {
+      return;
+    }
+    // navigate contact page of founded person enter contact text or add message 
   }
 }
