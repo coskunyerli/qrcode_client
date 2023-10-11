@@ -8,6 +8,7 @@ import { AccountPageComponent } from './account-page/account-page.component';
 import { QrPageComponent } from './qr-page/qr-page.component';
 import { NoContentPageComponent } from './no-content-page/no-content-page';
 import { MainPageComponent } from './main-page/main-page.component';
+import { QRFounderPageComponent } from './qr-founder-page/qr-founder-page.component';
 
 const routes: Routes = [
   {
@@ -38,6 +39,10 @@ const routes: Routes = [
     path: 'my_account',
     component: AccountPageComponent,
     canActivate: [authGuard]
+  },
+  {
+    path: 'qr_found',
+    component: QRFounderPageComponent
   },
   {
     path: ':id', component: QrPageComponent

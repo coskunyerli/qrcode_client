@@ -20,6 +20,10 @@ export class QrService {
     return this.http.put<CheckQRResponseInterface>(`${AppSettings.BASE_URL}/qr/check/`, { qrID: qrID });
   }
 
+  updateUserQRRelationDetail(qrInfo: QRUserRelationDetailResponseInterface){
+    return this.http.put<QRUserRelationDetailResponseInterface>(`${AppSettings.BASE_URL}/qr/`, {request: qrInfo, pk: qrInfo.id});
+  }
+
   getUserQRRelationDetail(id: number): Observable<QRUserRelationDetailResponseInterface> {
     return this.http.get<QRUserRelationDetailResponseInterface>(`${AppSettings.BASE_URL}/userqrrelation/${id}`);
   }

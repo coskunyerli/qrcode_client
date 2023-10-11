@@ -57,6 +57,8 @@ export class QrPageComponent {
     if (this.qrID.length === 0) {
       return;
     }
+
+    this.router.navigate(['/qr_found'], { queryParams: { qrCode: this.qrID } })
     // navigate contact page of founded person enter contact text or add message 
   }
 }

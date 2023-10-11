@@ -1,12 +1,15 @@
+import { User } from "./userInfoInterface";
+import { UserShowType } from "./userInfoInterface";
+
 export interface QRUserRelationDetailResponseInterface {
     id: number;
     userQRRelationID: number;
     inUse: boolean;
     acceptContact: boolean;
     message: string | undefined;
-    visibility: number | undefined;
+    visibility: UserShowType;
     useBackupNumber: boolean | undefined;
-    user: object | undefined;
+    user: User | undefined;
     qrCode: object | undefined;
 }
 
@@ -16,8 +19,8 @@ export interface QRUserRelationResponseInterface {
     inUse: boolean;
     acceptContact: boolean;
     message: string | undefined;
-    visibility: number | undefined;
+    visibility: UserShowType;
     useBackupNumber: boolean | undefined;
-    user: number;
+    user: User | undefined;
     qrCode: { id: number, isValid: boolean };
 }

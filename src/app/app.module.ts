@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { InputFieldComponent } from './input-field/input-field.component';
+import { QRFounderPageComponent } from './qr-founder-page/qr-founder-page.component';
 
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './services/auth/token.interceptor';
@@ -43,6 +44,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     AccountPageComponent,
     QrPageComponent,
     NoContentPageComponent,
+    QRFounderPageComponent,
     MainPageComponent
   ],
   imports: [
