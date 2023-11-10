@@ -17,31 +17,30 @@ export class AccountPageComponent {
   constructor(private http: HttpClient, private authService: AuthService, private router: Router, private route: ActivatedRoute, private qrService: QrService) { }
   qrList: Array<QRUserRelationResponseInterface> = [];
   selectedIndex: number = -1;
+  userShowType = UserShowType
 
-  displayedOption_ShowPhone: boolean = false;
-  displayedOption_ShowMessage: boolean = false;
-  displayedOption_QRIsInUse: boolean = false;
-  displayedOption_AcceptContact: boolean = false;
-  displayedOption_UseBackupNumber: boolean = false;
-  displayedOption_Visibility: UserShowType = UserShowType.INVISIBLE;
-  displayedMessage: string = 'no message';
-
-  //textAreaFormControl = new FormControl('', [Validators.maxLength(500)]);
+  get selectedItem(): QRUserRelationResponseInterface {
+    return this.qrList[this.selectedIndex];
+  }
 
   ngOnInit() {
-
     this.route.queryParamMap.subscribe(params => {
+      // update all list every update url
       this.qrService.getQRList().subscribe({
         next: data => {
           this.qrList = data;
+          console.log(data);
+          let index = -1;
           if (params.has('qrCode')) {
             let paramQR = params.get("qrCode");
-            let index = this.qrList.findIndex((data) => {
+            index = this.qrList.findIndex((data) => {
               return data.qrCode.id.toString() == paramQR;
             });
-            this.selectedIndex = index;
-            this.setQRCodeInfo(index);
           }
+          if (index < 0) {
+            index = 0;
+          }
+          this.setCurrentIndex(index);
         },
         error: error => {
           console.error('There was an error!', error);
@@ -51,44 +50,13 @@ export class AccountPageComponent {
   }
 
   onClickOnQR(index: number) {
-    this.selectedIndex = index;
-    // update url without navigate 
-    this.router.navigate(
-      [],
-      {
-        relativeTo: this.route,
-        queryParams: { qrCode: this.qrList[this.selectedIndex].qrCode.id },
-        queryParamsHandling: 'merge', // remove to replace all query params by provided
-      });
-    this.setQRCodeInfo(index);
-  }
-  setQRCodeInfo(index: number){
-    let qrInfo: QRUserRelationResponseInterface = this.qrList[index];
-
-    this.displayedOption_AcceptContact = qrInfo.acceptContact;
-    this.displayedOption_QRIsInUse = qrInfo.inUse;
-    //this.displayedOption_ShowMessage
-    //this.displayedOption_ShowPhone
-    this.displayedOption_Visibility = qrInfo.visibility;
-    //this.displayedMessage
+    this.setCurrentIndex(index);
   }
 
-  save(){
-    let newQRInfo: QRUserRelationResponseInterface = {
-      id: this.qrList[this.selectedIndex].id,
-      userQRRelationID: this.qrList[this.selectedIndex].userQRRelationID,
-      user: this.qrList[this.selectedIndex].user,
-      qrCode: this.qrList[this.selectedIndex].qrCode,
-
-      acceptContact: this.displayedOption_AcceptContact,
-      useBackupNumber: this.displayedOption_UseBackupNumber,
-      inUse: this.displayedOption_QRIsInUse,
-      visibility: this.displayedOption_Visibility,
-      message: this.displayedMessage
-    };
-    this.qrService.updateUserQRRelationDetail(newQRInfo).subscribe({
+  save() {
+    this.qrService.updateUserQRRelationDetail(this.selectedItem).subscribe({
       next: data => {
-        
+        console.log(data)
       },
       error: error => {
         console.log(error);
@@ -100,5 +68,32 @@ export class AccountPageComponent {
   logoutUser() {
     this.authService.logoutUser();
     this.router.navigate(['/login']);
+  }
+
+  private setCurrentIndex(index: number) {
+    if (this.selectedIndex === index || index >= this.qrList.length) {
+      return;
+    }
+
+    this.selectedIndex = index;
+    let params = {};
+    if (this.selectedIndex > -1) {
+      params = { qrCode: this.qrList[this.selectedIndex].qrCode.id };
+    }
+    this.router.navigate(
+      [],
+      {
+        relativeTo: this.route,
+        queryParams: params,
+        queryParamsHandling: 'merge', // remove to replace all query params by provided
+      });
+  }
+
+  acceptFounder(founderID: number) {
+    this.qrService.sendInformationToFounder(founderID).subscribe({
+      next: data => {
+          console.log(data);
+      }
+    })
   }
 }

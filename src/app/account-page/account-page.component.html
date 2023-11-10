@@ -33,41 +33,56 @@
           <div matSubheader>QR Detail</div>
         </div>
         <div class="col-12 container-fluid mt-4">
-          <mat-slide-toggle class="w-100" color="primary" [(ngModel)]="displayedOption_ShowPhone">
+          <mat-slide-toggle class="w-100" color="primary" [(ngModel)]="selectedItem.showPhoneNumber">
             Show Phone Number
           </mat-slide-toggle>
 
-          <mat-slide-toggle class="w-100" color="primary" [(ngModel)]="displayedOption_ShowMessage">
+          <mat-slide-toggle class="w-100" color="primary" [(ngModel)]="selectedItem.showMessage">
             Show Message
           </mat-slide-toggle>
 
-          <mat-slide-toggle class="w-100" color="primary" [(ngModel)]="displayedOption_QRIsInUse">
+          <mat-slide-toggle class="w-100" color="primary" [(ngModel)]="selectedItem.inUse">
             QR in Use
           </mat-slide-toggle>
 
-          <mat-slide-toggle class="w-100" color="primary" [(ngModel)]="displayedOption_AcceptContact">
+          <mat-slide-toggle class="w-100" color="primary" [(ngModel)]="selectedItem.acceptContact">
             Accept Contact
           </mat-slide-toggle>
 
-          <mat-slide-toggle class="w-100" color="primary" [(ngModel)]="displayedOption_UseBackupNumber">
+          <mat-slide-toggle class="w-100" color="primary" [(ngModel)]="selectedItem.useBackupNumber">
             Use Backup Number
           </mat-slide-toggle>
 
           <mat-form-field>
             <mat-label>Choose an option</mat-label>
-            <mat-select [(ngModel)]="displayedOption_Visibility">
-              <mat-option value="UserShowType.INVISIBLE">Invisible</mat-option>
-              <mat-option value="UserShowType.VISIBLE">Visible</mat-option>
-              <mat-option value="UserShowType.MESSAGE_VISIBLE">Message Visible</mat-option>
+            <mat-select [(ngModel)]="selectedItem.dataVisibility">
+              <mat-option [value]="userShowType.INVISIBLE">Invisible</mat-option>
+              <mat-option [value]="userShowType.VISIBLE">Visible</mat-option>
+              <mat-option [value]="userShowType.MESSAGE_VISIBLE">Message Visible</mat-option>
             </mat-select>
           </mat-form-field>
 
           <mat-form-field class="w-100">
             <mat-label>Message when QR is scanned</mat-label>
-            <textarea matInput></textarea>
+            <textarea matInput [(ngModel)]="selectedItem.message"></textarea>
           </mat-form-field>
 
           <button mat-raised-button color="primary" class="w-50" (click)="save()">Save</button>
+
+          <mat-selection-list class="pt-2 pb-2">
+            <div class="qr-list-header">
+              <div matSubheader>Founders</div>
+            </div>
+            <div *ngFor="let founderItem of selectedItem.foundQRList; index as i">
+              <mat-list-button class="qr-list-item"
+                (click)="onClickOnQR(i)">
+                <div class="col-md-10">{{founderItem.message}}</div>
+                <button class="col-md-2" mat-raised-button color="primary" (click)="acceptFounder(founderItem.id)">Accept</button>
+              </mat-list-button>
+              <mat-divider></mat-divider>
+            </div>
+    
+          </mat-selection-list>
         </div>
 
       </div>

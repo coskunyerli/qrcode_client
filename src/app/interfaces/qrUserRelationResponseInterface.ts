@@ -3,11 +3,12 @@ import { UserShowType } from "./userInfoInterface";
 
 export interface QRUserRelationDetailResponseInterface {
     id: number;
-    userQRRelationID: number;
     inUse: boolean;
     acceptContact: boolean;
+    showPhoneNumber: boolean;
+    showMessage: boolean;
     message: string | undefined;
-    visibility: UserShowType;
+    dataVisibility: UserShowType;
     useBackupNumber: boolean | undefined;
     user: User | undefined;
     qrCode: object | undefined;
@@ -15,12 +16,21 @@ export interface QRUserRelationDetailResponseInterface {
 
 export interface QRUserRelationResponseInterface {
     id: number;
-    userQRRelationID: number;
     inUse: boolean;
     acceptContact: boolean;
+    showPhoneNumber: boolean;
+    showMessage: boolean;
     message: string | undefined;
-    visibility: UserShowType;
+    dataVisibility: UserShowType;
     useBackupNumber: boolean | undefined;
     user: User | undefined;
+    foundQRList: Array<{ id: number, message: string }>;
     qrCode: { id: number, isValid: boolean };
+}
+
+export interface QRUserRelationCreateResponseInterface {
+    relationID: number;
+    message: string;
+    isNew: boolean;
+    qrID: string;
 }

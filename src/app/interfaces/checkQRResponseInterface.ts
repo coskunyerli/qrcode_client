@@ -2,7 +2,7 @@ export interface CheckUserRelationResponseInterface {
     qrID: string;
     has: boolean;
     errorMessage: string;
-    userQRRelationID: number | undefined;
+    relationID: number | undefined;
 }
 
 export interface CheckQRResponseInterface {

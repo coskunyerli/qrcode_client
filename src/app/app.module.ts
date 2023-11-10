@@ -32,6 +32,7 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import { RegistrationDoneComponent } from './registration-done/registration-done.component';
 
 
 @NgModule({
@@ -45,7 +46,8 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     QrPageComponent,
     NoContentPageComponent,
     QRFounderPageComponent,
-    MainPageComponent
+    MainPageComponent,
+    RegistrationDoneComponent
   ],
   imports: [
     MatTooltipModule,

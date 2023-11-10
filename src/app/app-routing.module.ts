@@ -9,6 +9,7 @@ import { QrPageComponent } from './qr-page/qr-page.component';
 import { NoContentPageComponent } from './no-content-page/no-content-page';
 import { MainPageComponent } from './main-page/main-page.component';
 import { QRFounderPageComponent } from './qr-founder-page/qr-founder-page.component';
+import { RegistrationDoneComponent } from './registration-done/registration-done.component';
 
 const routes: Routes = [
   {
@@ -22,7 +23,11 @@ const routes: Routes = [
   },
   {
     path: 'register',
-    component: RegisterComponent,
+    component: RegisterComponent
+  },
+  {
+    path: 'registration_done',
+    component: RegistrationDoneComponent,
     canActivate: [authGuard]
   },
   {
@@ -46,11 +51,6 @@ const routes: Routes = [
   },
   {
     path: ':id', component: QrPageComponent
-  },
-  {
-    path: '**',
-    pathMatch: 'full',
-    component: NoContentPageComponent
   }
 
 ];

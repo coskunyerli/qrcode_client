@@ -13,6 +13,7 @@ import { QrService } from '../services/qr/qr.service';
 })
 export class QrPageComponent {
   qrID: string = '';
+  userQRRelationID: number = -1;
   constructor(private route: ActivatedRoute, private http: HttpClient, private router: Router, private qrService: QrService) {
 
   }
@@ -20,6 +21,7 @@ export class QrPageComponent {
     this.route.params.subscribe((params) => {
       let qrID: string = params['id'];
       this.qrID = qrID;
+
       this.qrService.checkQRExist(qrID).subscribe({
         next: data => {
           if (!data.has) {
@@ -28,10 +30,11 @@ export class QrPageComponent {
             this.qrService.checkUserQRRelation(qrID).subscribe({
               next: data => {
                 if (data.has) {
-                  let id = data.userQRRelationID || -1;
-                  this.qrService.getUserQRRelationDetail(id).subscribe({})
+                  let id = data.relationID || -1;
+                  this.userQRRelationID = id;
                 } else {
-                  this.router.navigate(['/register'], { queryParams: { qr: qrID } })
+                  
+                  this.router.navigate(['/register'], { queryParams: { qr: qrID }, replaceUrl: true })
                 }
               }, error: error => {
                 console.log(`Unexpected error exists Error is ${error}`)
@@ -49,7 +52,7 @@ export class QrPageComponent {
       return;
     }
 
-    this.router.navigate(['/my_account'], { queryParams: { qrCode: this.qrID } })
+    this.router.navigate(['/my_account'], { queryParams: { qrCode: this.qrID }, replaceUrl: true })
     //navigate detail qr page and enable edit in my acoount endpoint
     //register if the qr code has not been registered yet
   }
@@ -58,7 +61,7 @@ export class QrPageComponent {
       return;
     }
 
-    this.router.navigate(['/qr_found'], { queryParams: { qrCode: this.qrID } })
+    this.router.navigate(['/qr_found'], { queryParams: { id: this.userQRRelationID }, replaceUrl: true })
     // navigate contact page of founded person enter contact text or add message 
   }
 }
