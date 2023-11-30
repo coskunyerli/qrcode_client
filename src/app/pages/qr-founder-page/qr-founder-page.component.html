@@ -1,0 +1,75 @@
+<div class="vh-100 gradient-custom">
+  <div class="pt-4">
+    <app-logo></app-logo>
+  </div>
+  <section>
+    <div class="container py-5 mt-5">
+      <div class="row d-flex justify-content-center align-items-center">
+        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+          <div>
+            <div *ngIf="!data || !data.inUse;then notUsedContext else dataContent">here is ignored</div>
+            <ng-template #notUsedContext>
+              <div class="card-body text-center">
+                QR Code not in use
+              </div>
+            </ng-template>
+            <ng-template #dataContent>
+              <ng-template [ngIf]="data?.dataVisibility === userShowType.VISIBLE">
+                <div class="card-body p-5 text-center">
+                  <h1 class="mb-3 font-bold">Detail of User</h1>
+                  <p>{{data?.user?.first_name}}</p>
+                  <p>{{data?.user?.last_name}}</p>
+                  <p>{{data?.user?.phoneNumber}}</p>
+                  <p>{{data?.user?.email}}</p>
+                  <p>{{data?.message}}</p>
+                </div>
+              </ng-template>
+              <ng-template [ngIf]="data?.dataVisibility === userShowType.INVISIBLE">
+                <div class="card-body p-5 text-center">
+                  <h1 class="mb-1 font-bold">Contact</h1>
+                  <h3>Data is not visible of user please contact user.</h3>
+                  <div *ngIf="!founder">
+                    <form class="login-form" #qrFoundedForm="ngForm"
+                      (ngSubmit)="sendFounderInfo(contactInput.value,founderMessageInput.value)">
+                      <mat-form-field class="w-100">
+                        <mat-label>Enter Contact</mat-label>
+                        <input matInput #contactInput type="email" id="contact" name="contact" />
+                      </mat-form-field>
+
+                      <mat-form-field class="w-100">
+                        <mat-label>Message to qr owner </mat-label>
+                        <textarea matInput #founderMessageInput></textarea>
+                        <mat-error
+                          *ngIf="founderMessageInput.value.length <= 0 && contactInput.value.length <= 0"> Error </mat-error>
+                      </mat-form-field>
+                      <button class="w-100" mat-raised-button color="primary" type="submit">Send</button>
+                    </form>
+                  </div>
+                  <div *ngIf="founder">
+                    <mat-form-field class="w-100">
+                      <mat-label>Verify OTP</mat-label>
+                      <input #verifyTextEdit matInput id="verifyOTP" name="verifyOTP" />
+                    </mat-form-field>
+                    <button class="w-100" mat-raised-button color="primary" (click)="verifyOTP(verifyTextEdit.value)"
+                      [disabled]="verifyTextEdit.value.length <= 0">Verify</button>
+                  </div>
+
+                </div>
+
+              </ng-template>
+              <ng-template [ngIf]="data?.dataVisibility===userShowType.MESSAGE_VISIBLE">
+                <div>
+                  <p>{{data?.message}}</p>
+                </div>
+              </ng-template>
+
+
+
+            </ng-template>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

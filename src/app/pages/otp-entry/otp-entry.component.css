@@ -1,0 +1,60 @@
+/* app.component.css */
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.centered {
+  text-align: center;
+}
+
+.login-box {
+  max-width: 600px;
+  min-width: 500px;
+  padding: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+.login-form .btn-primary {
+  margin-top: 16px;
+  width: 50%;
+  /* Make the button 100% width of its container */
+}
+
+.form-group {
+  margin-top: 16px;
+  width: 100%;
+}
+
+.code_input {
+  display: inline-block;
+  width: 50px;
+  height: 70px;
+  margin: 1.5%;
+  font-size: xx-large;
+  text-align: center;
+  border-radius: 5px;
+  border: 1px solid #9c9c9c;
+  color: #000000;
+  box-shadow: 0 0 3px #cbcbcb;
+}
+
+.code_input:focus {
+  outline: none;
+  border: 1px solid rgb(47, 61, 169);
+  color: #000000;
+  box-shadow: 0 0 3px rgb(47, 61, 169);
+}
+
+.otp-error-label {
+  font-size: 12px;
+  text-align: left;
+  padding-left: 18px;
+}
+
+/* Rest of the styles remain the same */

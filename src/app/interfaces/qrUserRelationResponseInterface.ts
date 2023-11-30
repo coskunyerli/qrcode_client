@@ -3,6 +3,8 @@ import { UserShowType } from "./userInfoInterface";
 
 export interface QRUserRelationDetailResponseInterface {
     id: number;
+    name: string;
+    description: string;
     inUse: boolean;
     acceptContact: boolean;
     showPhoneNumber: boolean;
@@ -17,6 +19,8 @@ export interface QRUserRelationDetailResponseInterface {
 export interface QRUserRelationResponseInterface {
     id: number;
     inUse: boolean;
+    name: string;
+    description: string;
     acceptContact: boolean;
     showPhoneNumber: boolean;
     showMessage: boolean;

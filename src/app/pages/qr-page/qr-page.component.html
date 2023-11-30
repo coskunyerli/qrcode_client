@@ -1,0 +1,30 @@
+<div class="vh-100 gradient-custom">
+    <div class="pt-4">
+      <app-logo></app-logo>
+    </div>  
+    <section class="gradient-custom">
+    <div class="container py-5 mt-5">
+      <div class="row d-flex justify-content-center align-items-center">
+        <div class="col-12 col-md-8 col-lg-6 col-xl-5" style="width: 600px;">
+          <div>
+            <div class="card-body p-5 mt-4 text-center">
+              <h1 class="mb-3 font-bold">You Found QR!</h1>
+              <p class="text-justify" style="text-align: left;">
+                If this is not your QR Code, we would like to inform you that you found a lost item.
+                In order to proceed, please select if this is your QR Code or a QR Code you have found.
+              </p>
+
+              <hr class="my-4">
+              <div class="d-flex flex-row">
+                <button mat-button class="col-6" color="primary" (click)="editQRCode()">Edit My QR Code</button>
+                <button mat-raised-button class="col-6" color="primary" (click)="qrFoundByPerson()">I Found The QR
+                  Code</button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

@@ -1,0 +1,20 @@
+<div class="form-outline">
+    <input #otp0 class="code_input" pattern="^[0-9]$" maxlength="1" name="otp1"
+        (input)="otp0.value.length > 0 ? otp1.focus() : null;valueChange.emit(value(otp0.value,otp1.value,otp2.value,otp3.value,otp4.value,otp5.value))"
+        required>
+    <input #otp1 class="code_input" pattern="^[0-9]$" maxlength="1" name="otp2"
+        (input)="otp1.value.length > 0 ? otp2.focus(): otp0.focus();valueChange.emit(value(otp0.value,otp1.value,otp2.value,otp3.value,otp4.value,otp5.value))"
+        required>
+    <input #otp2 class="code_input" pattern="^[0-9]$" maxlength="1" name="otp3"
+        (input)="otp2.value.length > 0 ? otp3.focus(): otp1.focus();valueChange.emit(value(otp0.value,otp1.value,otp2.value,otp3.value,otp4.value,otp5.value))"
+        required>
+    <input #otp3 class="code_input" pattern="^[0-9]$" maxlength="1" name="otp4"
+        (input)="otp3.value.length > 0 ? otp4.focus(): otp2.focus();valueChange.emit(value(otp0.value,otp1.value,otp2.value,otp3.value,otp4.value,otp5.value))"
+        required>
+    <input #otp4 class="code_input" pattern="^[0-9]$" maxlength="1" name="otp5"
+        (input)="otp4.value.length > 0 ? otp5.focus(): otp3.focus();valueChange.emit(value(otp0.value,otp1.value,otp2.value,otp3.value,otp4.value,otp5.value))"
+        required>
+    <input #otp5 class="code_input" pattern="^[0-9]$" maxlength="1" name="otp6"
+        (input)="otp5.value.length > 0 ? null: otp4.focus();valueChange.emit(value(otp0.value,otp1.value,otp2.value,otp3.value,otp4.value,otp5.value));"
+        required>
+</div>

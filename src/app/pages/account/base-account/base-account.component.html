@@ -1,0 +1,14 @@
+<mat-toolbar class="toolbar">
+    <a class="logo-font" [routerLink]="[accountPath]">EasyQRTag</a>
+    <span class="spacer"></span>
+
+    <a routerLink="settings" mat-icon-button aria-label="Settings" matTooltip="Settings">
+        <mat-icon class="icon">settings</mat-icon>
+    </a>
+
+    <button (click)="logoutUser()" mat-icon-button aria-label="Logout" matTooltip="Logout">
+        <mat-icon class="icon">logout</mat-icon>
+    </button>
+</mat-toolbar>
+
+<router-outlet></router-outlet>

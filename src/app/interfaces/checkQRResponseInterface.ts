@@ -2,6 +2,8 @@ export interface CheckUserRelationResponseInterface {
     qrID: string;
     has: boolean;
     errorMessage: string;
+    isOwner: boolean;
+    inUse: boolean;
     relationID: number | undefined;
 }
 

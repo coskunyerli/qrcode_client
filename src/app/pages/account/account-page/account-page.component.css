@@ -1,0 +1,57 @@
+.nav-pills>li.active>a,
+.nav-pills>li.active>a:hover,
+.nav-pills>li.active>a:focus {
+  background-color: rgb(73, 240, 145);
+  color: #ffffff;
+}
+
+
+
+.qr-image-list-item {
+  padding: 10px;
+}
+
+
+.sort-hover-active {
+  background-color: rgb(73, 240, 145) !important;
+}
+
+.current-selected-item {
+  background-color: #aaaaaa;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.qr-list-header {
+  border-bottom: 1px solid var(--bs-border-color);
+}
+
+.qr_item_detail {
+  border-bottom: 1px solid var(--bs-border-color);
+}
+
+.text-middle {
+  position: relative;
+  top: 25%;
+  margin: auto;
+  display: block;
+}
+
+.fill-parent {
+  flex: 1 1 auto;
+}
+
+.list-item-name {
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.list-item-description {
+  display: block;
+  height: 20px;
+  font-size: 11px;
+  color: #808080;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}

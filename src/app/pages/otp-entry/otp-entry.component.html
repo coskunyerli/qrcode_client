@@ -1,0 +1,38 @@
+<div class="vh-100 gradient-custom">
+  <div class="pt-4">
+    <app-logo></app-logo>
+  </div>
+  <section>
+    <div class="container mt-5">
+      <div class="row d-flex justify-content-center align-items-center">
+        <div class="col-12 col-md-8 col-lg-6 col-xl-5" style="width: 500px;">
+          <div>
+            <div class="card-body p-5 mt-5 text-center">
+
+              <h1 class="mb-3 font-bold">Enter OTP Value</h1>
+
+              <form class="login-form" #loginForm="ngForm" (ngSubmit)="onSubmit()">
+
+                <mat-form-field class="w-100">
+                  <mat-label>Enter Contact</mat-label>
+                  <input matInput type="email" id="contact" [(ngModel)]="contact" name="contact" disabled="true"
+                    required />
+                </mat-form-field>
+
+
+                <app-otp-field class="mt-2" (valueChange)="otpValue=$event;"></app-otp-field>
+                <mat-error class="mb-4 otp-error-label">
+                  {{buttonIsDirty && otpValue.length<6 ? 'Please enter a valid otp value': ''}}
+                </mat-error>
+
+                <!-- <input type="hidden" name="full_Code" id="fullCode" value=""> -->
+
+                <button #verifyButton mat-raised-button color="primary" class="w-100" type="submit">Verify</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

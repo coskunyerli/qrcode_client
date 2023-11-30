@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, catchError, map, of } from 'rxjs';
 import { AppSettings } from 'src/app/constants';
 import { LoginUserResponseInterface, VerifyUserResponseInterface } from 'src/app/interfaces/loginUserResponseInterface';
+import { User } from 'src/app/interfaces/userInfoInterface';
 
 @Injectable({
   providedIn: 'root'
@@ -30,5 +31,13 @@ export class UserService {
         return of(false);
       })
     );
+  }
+
+  getUserDetail(): Observable<User> {
+    return this.http.get<User>(`${AppSettings.BASE_URL}/user/detail`);
+  }
+
+  updateUserData(user: User): Observable<User> {
+    return this.http.put<User>(`${AppSettings.BASE_URL}/user/detail`, user);
   }
 }

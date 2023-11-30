@@ -3,25 +3,23 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { RegisterComponent } from './register/register.component';
+import { RegisterComponent } from './pages/register/register.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { OtpEntryComponent } from './otp-entry/otp-entry.component';
+import { OtpEntryComponent } from './pages/otp-entry/otp-entry.component';
 import { FormsModule } from '@angular/forms';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './pages/login/login.component';
 import { HttpClientModule } from '@angular/common/http';
-import { InputFieldComponent } from './input-field/input-field.component';
-import { QRFounderPageComponent } from './qr-founder-page/qr-founder-page.component';
+import { QRFounderPageComponent } from './pages/qr-founder-page/qr-founder-page.component';
 
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './services/auth/token.interceptor';
 import { AuthService } from './services/auth/auth.service';
-import { AccountPageComponent } from './account-page/account-page.component';
+import { AccountPageComponent } from './pages/account/account-page/account-page.component';
 import { QRCodeModule } from 'angular2-qrcode';
-import { QrPageComponent } from './qr-page/qr-page.component';
+import { QrPageComponent } from './pages/qr-page/qr-page.component';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { MainPageComponent } from './main-page/main-page.component';
-import { NoContentPageComponent } from './no-content-page/no-content-page';
+import { NoContentPageComponent } from './pages/no-content-page/no-content-page';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
@@ -32,8 +30,13 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import {MatTooltipModule} from '@angular/material/tooltip';
-import { RegistrationDoneComponent } from './registration-done/registration-done.component';
 
+import { ToastrModule } from 'ngx-toastr';
+import { SettingsPageComponent } from './pages/account/settings-page/settings-page.component';
+import { BaseAccountComponent } from './pages/account/base-account/base-account.component';
+import { BaseToolbarComponent } from './components/base-toolbar/base-toolbar.component';
+import { OtpFieldComponent } from './components/otp-field/otp-field.component';
+import { LogoComponent } from './components/logo/logo.component';
 
 @NgModule({
   declarations: [
@@ -41,13 +44,15 @@ import { RegistrationDoneComponent } from './registration-done/registration-done
     RegisterComponent,
     OtpEntryComponent,
     LoginComponent,
-    InputFieldComponent,
     AccountPageComponent,
     QrPageComponent,
     NoContentPageComponent,
     QRFounderPageComponent,
-    MainPageComponent,
-    RegistrationDoneComponent
+    SettingsPageComponent,
+    BaseAccountComponent,
+    BaseToolbarComponent,
+    OtpFieldComponent,
+    LogoComponent
   ],
   imports: [
     MatTooltipModule,
@@ -66,7 +71,8 @@ import { RegistrationDoneComponent } from './registration-done/registration-done
     FormsModule,
     HttpClientModule,
     CommonModule,
-    RouterModule
+    RouterModule,
+    ToastrModule.forRoot() // ToastrModule added
   ],
   providers: [
     AuthService,

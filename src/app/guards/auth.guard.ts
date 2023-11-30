@@ -2,6 +2,7 @@ import { inject } from '@angular/core';
 import { CanActivateFn, createUrlTreeFromSnapshot } from '@angular/router';
 import { AuthService } from '../services/auth/auth.service';
 import { map } from 'rxjs';
+import { AppSettings } from '../constants';
 
 export const authGuard: CanActivateFn = (route, state) => {
   let authService = inject(AuthService);
@@ -28,7 +29,7 @@ export const hasAuthGuard: CanActivateFn = (route, state) => {
   return isAuth.pipe(
     map((res: boolean) => {
       if (res) {
-        return createUrlTreeFromSnapshot(route, ['/', 'my_account'])
+        return createUrlTreeFromSnapshot(route, [AppSettings.ACCOUNT_PATH])
       } else {
         return true;
       }

@@ -1,0 +1,23 @@
+<div class="vh-100 gradient-custom">
+  <section class="gradient-custom">
+    <div class="pt-4">
+      <app-logo></app-logo>
+    </div>
+    <div class="container py-5">
+      <div class="row d-flex justify-content-center align-items-center">
+        <div class="col-12 col-md-8 col-lg-6 col-xl-5" style="width: 600px;">
+          <div>
+            <div class="card-body p-5 mt-5 text-center">
+              <h1 class="mb-3 font-bold">Register QR</h1>
+              <mat-form-field class="w-100">
+                <mat-label>Message when QR is scanned (Optional)</mat-label>
+                <textarea matInput [(ngModel)]="message"></textarea>
+              </mat-form-field>
+              <button mat-raised-button color="primary" class="w-100" (click)="registerQR()">Register</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

@@ -1,15 +1,35 @@
 /* You can add global styles to this file, and also import other style files */
+@font-face {
+  font-family: 'Audiowide';
+  src: url('assets/fonts/Audiowide/Audiowide-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+  --primary-color: rgb(8, 25, 71);
+  --background-color: #ffffff;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
 
 .gradient-custom {
-    /* fallback for old browsers  */
-    background: rgb(73, 240, 145);
-    
-    /* Chrome 10-25, Safari 5.1-6 */
-    background: -webkit-linear-gradient(to right, rgb(46, 236, 166), rgb(100, 244, 124));
-    
-    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    background: linear-gradient(to right, rgb(46, 236, 166), rgb(100, 244, 124))
-  }
+  /* fallback for old browsers  */
+  background: var(--background-color);
+
+  /* Chrome 10-25, Safari 5.1-6 
+  background: -webkit-linear-gradient(to bottom,rgb(152, 165, 193), rgb(8, 25, 71));
+
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ 
+  background: linear-gradient(to bottom, rgb(152, 165, 193),rgb(8, 25, 71))
+  */
+}
+
+.font-bold {
+  font-weight: 800 !important;
+}

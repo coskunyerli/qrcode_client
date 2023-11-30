@@ -1,0 +1,32 @@
+<div class="vh-100 gradient-custom">
+  <section>
+    <div class="pt-4">
+      <app-logo></app-logo>
+    </div>
+    <div class="container mt-5">
+      <div class="row d-flex justify-content-center align-items-center ">
+        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+          <div>
+            <div class="card-body p-5 mt-5 text-center">
+
+              <h1 class="mb-3 font-bold">Login/Create Account</h1>
+
+              <form class="login-form" #loginForm="ngForm" (ngSubmit)="onSubmit()">
+                <mat-form-field class="w-100">
+                  <mat-label>Enter Contact</mat-label>
+                  <input matInput type="email" id="contact" [(ngModel)]="contact" name="contact" required />
+                  <mat-error *ngIf="loginForm.invalid">
+                    Please enter a valid email address
+                  </mat-error>
+                </mat-form-field>
+                <button class="w-100 mt-3" mat-raised-button color="primary" type="submit"
+                  >Login</button>
+                <span class="small-info">*Please use 905551234567 pattern to enter phone number</span>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
