@@ -1,14 +1,133 @@
-<div class="d-flex flex-row">
-  <div class="col-md-4 border">
+<mat-sidenav-container class="h-100">
+  <mat-sidenav-content>
+    <div class="d-flex flex-row">
+    <div *ngIf="!hideQRList" class="col border border-bottom-0">
+      <mat-selection-list class="pt-2 pb-2">
+        <div class="qr-list-header">
+          <app-info-icon-container [message]="accountQRMessageInfo">
+            <div matSubheader class="font-bold page-title">QR Items</div>
+          </app-info-icon-container>
+        </div>
+        <div *ngFor="let qrItem of qrList; index as i">
+          <mat-list-item [ngClass]="{'current-selected-item' : selectedIndex === i}" (click)="onClickOnQR(i)">
+            <mat-icon matListItemIcon>qr_code_2</mat-icon>
+            <div [matTooltip]="qrItem.name" class="list-item-name">{{qrItem.name || "-- No Name --"}}</div>
+            <span [matTooltip]="qrItem.qrCode.id.toString()" class="list-item-description">{{qrItem.qrCode.id.toString()}}</span>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+        </div>
+
+      </mat-selection-list>
+    </div>
+    <div class="col border border-bottom-0 pt-2 pb-2 d-flex flex-column">
+      <div class="col-md-12">
+        <div class="qr_item_detail horizontal-layout">
+          <button *ngIf="hideQRList" (click)="sidenavQRList.open()" mat-icon-button color="primary">
+            <mat-icon>list</mat-icon>
+          </button>
+          <div matSubheader class="font-bold page-title layout-fill">QR Detail</div>
+          <button *ngIf="hideFounder" (click)="sidenavFounder.open()" mat-icon-button color="primary">
+            <mat-icon>message</mat-icon>
+          </button>
+        </div>
+        <div *ngIf="selectedIndex > -1" class="col-12 container-fluid mt-4">
+          <mat-slide-toggle class="w-100 mb-3" color="primary" [(ngModel)]="selectedItem.inUse">
+            QR in Use
+          </mat-slide-toggle>
+          <div [attr.disabled]="!selectedItem.inUse ? true : null">
+            <app-info-icon-container [message]="accountQRMessageInfo">
+              <mat-form-field class="w-100">
+                <mat-label>QR Name</mat-label>
+                <input matInput [(ngModel)]="selectedItem.name">
+              </mat-form-field>
+            </app-info-icon-container>
+
+            <app-info-icon-container [message]="accountQRMessageInfo">
+              <mat-form-field class="w-100">
+                <mat-label>Choose an option</mat-label>
+                <mat-select [(ngModel)]="selectedItem.dataVisibility">
+                  <mat-option [value]="userShowType.INVISIBLE">Invisible</mat-option>
+                  <mat-option [value]="userShowType.VISIBLE">Visible</mat-option>
+                  <mat-option [value]="userShowType.MESSAGE_VISIBLE">Message Visible</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </app-info-icon-container>
+
+            <app-info-icon-container [message]="accountQRMessageInfo">
+              <mat-slide-toggle [disabled]="selectedItem.dataVisibility === userShowType.VISIBLE" class="w-100"
+                color="primary" [(ngModel)]="selectedItem.acceptContact">
+                Accept Contact
+              </mat-slide-toggle>
+            </app-info-icon-container>
+
+
+            <app-info-icon-container class="d-block mb-3 mt-2" [message]="accountQRMessageInfo">
+              <mat-slide-toggle class="w-100" color="primary" [(ngModel)]="selectedItem.useBackupNumber">
+                Use Backup Number
+              </mat-slide-toggle>
+            </app-info-icon-container>
+            <app-info-icon-container [message]="accountQRMessageInfo">
+              <mat-form-field class="w-100">
+                <mat-label>Message when QR is scanned</mat-label>
+                <textarea rows="5" matInput [(ngModel)]="selectedItem.message"></textarea>
+              </mat-form-field>
+            </app-info-icon-container>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="row justify-content-center">
+        <button mat-raised-button color="primary" class="w-50 justify-content-center" (click)="save()">Save</button>
+      </div>
+
+    </div>
+    <div *ngIf="!hideFounder" class="col border border-bottom-0">
+      <mat-selection-list class="pt-2 pb-2 vertical-layout">
+        <div class="qr-list-header">
+          <app-info-icon-container [message]="accountQRMessageInfo">
+            <div matSubheader class="font-bold page-title">Founders</div>
+          </app-info-icon-container>
+        </div>
+        <div class="overflow-y-auto">
+          <div *ngFor="let founderItem of selectedItem.foundQRList; index as i">
+            <div class="pb-1">
+              <div class="remove-message-icon-container">
+                <mat-icon (click)="removeMessage(founderItem.id)">close</mat-icon>
+              </div>
+              <div>
+                <span class="message-text">{{founderItem.message}}</span>
+              </div>
+              <div class="created-date-text-container">
+                <span class="created-date-text">{{founderItem.createdDate}}</span>
+              </div>
+              <mat-list-button *ngIf="founderItem.hasContact" (click)="onClickOnQR(i)">
+                <button class="found-accept-button" mat-raised-button color="primary"
+                  (click)="acceptFounder(founderItem.id)">Accept</button>
+              </mat-list-button>
+            </div>
+            <mat-divider></mat-divider>
+          </div>
+        </div>
+
+      </mat-selection-list>
+    </div>
+  </div>
+</mat-sidenav-content>
+<mat-sidenav class="rounded-end-4" mode="over" #sidenavQRList="matSidenav">
+  <div class="founder-sidebar">
     <mat-selection-list class="pt-2 pb-2">
       <div class="qr-list-header">
-        <div matSubheader class="font-bold">QR Items</div>
+        <app-info-icon-container [message]="accountQRMessageInfo">
+          <div matSubheader class="font-bold page-title">QR Items</div>
+        </app-info-icon-container>
       </div>
       <div *ngFor="let qrItem of qrList; index as i">
-        <mat-list-item class="qr-list-item" [ngClass]="{'current-selected-item' : selectedIndex === i}"
-          (click)="onClickOnQR(i)">
+        <mat-list-item [ngClass]="{'current-selected-item' : selectedIndex === i}" (click)="onClickOnQR(i)">
           <mat-icon matListItemIcon>qr_code_2</mat-icon>
-          <div [matTooltip]="qrItem.name || qrItem.qrCode.id.toString()" class="list-item-name">{{qrItem.name || qrItem.qrCode.id}}</div>
+          <div [matTooltip]="qrItem.name || qrItem.qrCode.id.toString()" class="list-item-name">{{qrItem.name ||
+            qrItem.qrCode.id}}</div>
           <span [matTooltip]="qrItem.description" class="list-item-description">{{qrItem.description || "-- No Description --"}}</span>
         </mat-list-item>
         <mat-divider></mat-divider>
@@ -16,74 +135,39 @@
 
     </mat-selection-list>
   </div>
-  <div class="col-md-4 border pt-2 pb-2 d-flex flex-column">
-    <div *ngIf="selectedIndex > -1" class="col-md-12">
-      <div class="qr_item_detail">
-        <div matSubheader class="font-bold">QR Detail</div>
-      </div>
-      <div class="col-12 container-fluid mt-4">
-        <mat-slide-toggle class="w-100 mt-1" color="primary" [(ngModel)]="selectedItem.inUse">
-          QR in Use
-        </mat-slide-toggle>
-
-        <mat-slide-toggle class="w-100 mt-1" color="primary" [(ngModel)]="selectedItem.acceptContact">
-          Accept Contact
-        </mat-slide-toggle>
-
-        <mat-slide-toggle class="w-100 mt-1" color="primary" [(ngModel)]="selectedItem.useBackupNumber">
-          Use Backup Number
-        </mat-slide-toggle>
-
-        <mat-form-field class="w-100 mt-3">
-          <mat-label>Choose an option</mat-label>
-          <mat-select [(ngModel)]="selectedItem.dataVisibility">
-            <mat-option [value]="userShowType.INVISIBLE">Invisible</mat-option>
-            <mat-option [value]="userShowType.VISIBLE">Visible</mat-option>
-            <mat-option [value]="userShowType.MESSAGE_VISIBLE">Message Visible</mat-option>
-          </mat-select>
-        </mat-form-field>
-
-        <mat-form-field class="w-100">
-          <mat-label>QR Name</mat-label>
-          <input matInput [(ngModel)]="selectedItem.name">
-        </mat-form-field>
-
-        <mat-form-field class="w-100">
-          <mat-label>QR Description</mat-label>
-          <input matInput [(ngModel)]="selectedItem.description">
-        </mat-form-field>
-
-        <mat-form-field class="w-100">
-          <mat-label>Message when QR is scanned</mat-label>
-          <textarea rows="5" matInput [(ngModel)]="selectedItem.message"></textarea>
-        </mat-form-field>
-
-      </div>
-
-    </div>
-
-    <div class="row justify-content-center">
-      <button mat-raised-button color="primary" class="w-50 justify-content-center" (click)="save()">Save</button>
-    </div>
-
-  </div>
-  <div class="col-md-4 border">
-    <mat-selection-list class="pt-2 pb-2">
+</mat-sidenav>
+<mat-sidenav class="rounded-start-4" mode="over" #sidenavFounder="matSidenav" position="end">
+  <div class="founder-sidebar">
+    <mat-selection-list class="pt-2 pb-2 vertical-layout">
       <div class="qr-list-header">
-        <div matSubheader class="font-bold">Founders</div>
+        <app-info-icon-container [message]="accountQRMessageInfo">
+          <div matSubheader class="font-bold page-title">Founders</div>
+        </app-info-icon-container>
       </div>
-      <div *ngFor="let founderItem of selectedItem.foundQRList; index as i">
-        <div class="d-flex p-2">
-          <div class="fill-parent">
-            <p class="text-middle">{{founderItem.message}}</p>
+      <div class="overflow-y-auto">
+        <div class="pb-1" *ngFor="let founderItem of selectedItem.foundQRList; index as i">
+          <div>
+            <div class="remove-message-icon-container">
+              <mat-icon (click)="removeMessage(founderItem.id)">close</mat-icon>
+            </div>
+            <div>
+              <span class="message-text">{{founderItem.message}}</span>
+            </div>
+            <div class="created-date-text-container">
+              <span class="created-date-text">{{founderItem.createdDate}}</span>
+            </div>
+            <mat-list-button *ngIf="founderItem.hasContact" (click)="onClickOnQR(i)">
+              <button class="found-accept-button" mat-raised-button color="primary"
+                (click)="acceptFounder(founderItem.id)">Accept</button>
+            </mat-list-button>
           </div>
-          <mat-list-button class="qr-list-item" (click)="onClickOnQR(i)">
-            <button mat-raised-button color="primary" (click)="acceptFounder(founderItem.id)">Accept</button>
-          </mat-list-button>
+          <mat-divider></mat-divider>
         </div>
-        <mat-divider></mat-divider>
       </div>
 
     </mat-selection-list>
   </div>
-</div>
+  </mat-sidenav>
+</mat-sidenav-container>
+
+  

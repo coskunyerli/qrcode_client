@@ -18,7 +18,7 @@ export class QrService {
   }
 
   checkQRExist(qrID: string): Observable<CheckQRResponseInterface> {
-    return this.http.put<CheckQRResponseInterface>(`${AppSettings.BASE_URL}/qr/check/`, { qrID: qrID });
+    return this.http.put<CheckQRResponseInterface>(`${AppSettings.BASE_URL}/qr/check`, { qrID: qrID });
   }
 
   updateUserQRRelationDetail(qrInfo: QRUserRelationDetailResponseInterface) {
@@ -29,8 +29,18 @@ export class QrService {
     return this.http.get<QRUserRelationDetailResponseInterface>(`${AppSettings.BASE_URL}/userqrrelation/${id}`);
   }
 
-  createUserQRRelation(qrID: string, message: string): Observable<QRUserRelationCreateResponseInterface> {
-    return this.http.post<QRUserRelationCreateResponseInterface>(`${AppSettings.BASE_URL}/qr`, { qrCode: qrID, message: message });
+  createUserQRRelation(qrID: string, name: string, message: string): Observable<QRUserRelationCreateResponseInterface> {
+    return this.http.post<QRUserRelationCreateResponseInterface>(`${AppSettings.BASE_URL}/qr`, { qrCode: qrID, name: name, message: message });
+  }
+
+  deleteUserQRRelation(relationID: number): Observable<boolean> {
+    return this.http.delete(`${AppSettings.BASE_URL}/qr/${relationID}`).pipe(map((res: any) => {
+      return true;
+    }),
+      catchError((error) => {
+        return of(false);
+      })
+    );
   }
 
   getQRList(): Observable<Array<QRUserRelationResponseInterface>> {
@@ -49,6 +59,16 @@ export class QrService {
       {
         found_person_id: foundPersonID, otp: otp, relationID: relationID, clientUrl: url
       });
+  }
+
+  removeFounderMessage(founderID: number): Observable<boolean> {
+    return this.http.delete(`${AppSettings.BASE_URL}/found/${founderID}`).pipe(map((res: any) => {
+      return true;
+    }),
+      catchError((error) => {
+        return of(false);
+      })
+    );
   }
 
   sendInformationToFounder(founderID: number): Observable<boolean> {

@@ -31,3 +31,36 @@
 .qr_item_detail {
   border-bottom: 1px solid var(--bs-border-color);
 }
+
+
+.card-item-title {
+  text-align: left;
+  color: #6075af;
+  width: 50%;
+  font-weight: 800;
+  font-size: 12pt;
+}
+
+.card-item-info {
+  text-align: left;
+  font-weight: 400;
+  color: #808080;
+  width: 50%;
+}
+
+.card-item-container {
+  padding: 16px;
+  border-bottom: 1px solid #909090;
+  display: flex;
+  flex-direction: row;
+}
+
+.edit-qr-code {
+  display: block;
+  margin-right: 8px;
+  margin-top: 4px;
+  cursor: pointer;
+  text-decoration: underline;
+  text-align: right;
+  font-size: 8pt;
+}

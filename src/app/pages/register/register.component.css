@@ -4,3 +4,9 @@
   align-items: center;
   height: 100vh;
 }
+
+.info-icon {
+  position: relative;
+  left: calc(100% - 16px);
+  top: -16px;
+}

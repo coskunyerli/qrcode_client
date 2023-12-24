@@ -1,0 +1,15 @@
+.dialog-title {
+    color: #333;
+    font-size: 1.5em;
+    margin-bottom: 10px;
+  }
+
+  .dialog-content {
+    color: #666;
+    font-size: 1.1em;
+    margin-bottom: 20px;
+  }
+
+  .dialog-actions {
+    justify-content: flex-end;
+  }

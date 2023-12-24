@@ -1,6 +1,6 @@
 <div class="vh-100 gradient-custom">
-  <div class="pt-4">
-    <app-logo></app-logo>
+  <div class="pt-5">
+    <app-logo [showHomePage]="false"></app-logo>
   </div>
   <section>
     <div class="container mt-5">
@@ -9,7 +9,7 @@
           <div>
             <div class="card-body p-5 mt-5 text-center">
 
-              <h1 class="mb-3 font-bold">Enter OTP Value</h1>
+              <h1 class="mb-4 page-title font-bold">Enter OTP Value</h1>
 
               <form class="login-form" #loginForm="ngForm" (ngSubmit)="onSubmit()">
 
@@ -21,7 +21,7 @@
 
 
                 <app-otp-field class="mt-2" (valueChange)="otpValue=$event;"></app-otp-field>
-                <mat-error class="mb-4 otp-error-label">
+                <mat-error class="mb-3 otp-error-label">
                   {{buttonIsDirty && otpValue.length<6 ? 'Please enter a valid otp value': ''}}
                 </mat-error>
 

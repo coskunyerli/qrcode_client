@@ -13,7 +13,7 @@ export interface QRUserRelationDetailResponseInterface {
     dataVisibility: UserShowType;
     useBackupNumber: boolean | undefined;
     user: User | undefined;
-    qrCode: object | undefined;
+    qrCode: { id: number, isValid: boolean } | undefined;
 }
 
 export interface QRUserRelationResponseInterface {
@@ -28,7 +28,7 @@ export interface QRUserRelationResponseInterface {
     dataVisibility: UserShowType;
     useBackupNumber: boolean | undefined;
     user: User | undefined;
-    foundQRList: Array<{ id: number, message: string }>;
+    foundQRList: Array<{ id: number, message: string, createdDate: string, hasContact: boolean }>;
     qrCode: { id: number, isValid: boolean };
 }
 

@@ -29,12 +29,13 @@ export class QrPageComponent {
               next: data => {
                 if (data.has) {
                   if (data.isOwner) {
-                    this.editQRCode();
+                    this.router.navigate([AppSettings.ACCOUNT_PATH], { queryParams: { qrCode: this.qrID }, replaceUrl: true })
                   } else if (!data.inUse) {
                     this.router.navigate(['not_found']);
                   } else {
                     let id = data.relationID || -1;
                     this.userQRRelationID = id;
+                    this.router.navigate(['/qr_found'], { queryParams: { id: this.userQRRelationID }, replaceUrl: true })
                   }
 
                 } else {
@@ -46,27 +47,13 @@ export class QrPageComponent {
               }
             });
           }
+        },
+        error: error => {
+          this.toastService.error('QR Error', 'QR detail is not get successfully.');
+          console.error(qrID, error);
         }
       })
 
     });
-  }
-
-  editQRCode() {
-    if (this.qrID.length === 0) {
-      return;
-    }
-
-    this.router.navigate([AppSettings.ACCOUNT_PATH], { queryParams: { qrCode: this.qrID }, replaceUrl: true })
-    //navigate detail qr page and enable edit in my account endpoint
-    //register if the qr code has not been registered yet
-  }
-  qrFoundByPerson() {
-    if (this.qrID.length === 0) {
-      return;
-    }
-
-    this.router.navigate(['/qr_found'], { queryParams: { id: this.userQRRelationID }, replaceUrl: true })
-    // navigate contact page of founded person enter contact text or add message 
   }
 }

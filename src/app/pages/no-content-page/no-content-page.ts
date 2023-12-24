@@ -1,9 +1,11 @@
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AppSettings } from '../../constants';
 import { CheckQRResponseInterface } from '../../interfaces/checkQRResponseInterface'
 import { QRUserRelationDetailResponseInterface } from '../../interfaces/qrUserRelationResponseInterface'
+import { MatSidenav } from '@angular/material/sidenav';
+import { BreakpointObserver } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-qr-page',
@@ -11,10 +13,20 @@ import { QRUserRelationDetailResponseInterface } from '../../interfaces/qrUserRe
   styleUrls: ['./no-content-page.component.css']
 })
 export class NoContentPageComponent {
-  constructor() {
+  @ViewChild(MatSidenav)
+  sidenav!: MatSidenav;
 
-  }
-  ngOnInit(){
+  constructor(private observer: BreakpointObserver) {}
 
+  ngAfterViewInit() {
+    this.observer.observe(["(max-width: 800px)"]).subscribe((res) => {
+      if (res.matches) {
+        this.sidenav.mode = "over";
+        this.sidenav.close();
+      } else {
+        this.sidenav.mode = "side";
+        this.sidenav.open();
+      }
+    });
   }
 }

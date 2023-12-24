@@ -1,18 +1,26 @@
 <div class="vh-100 gradient-custom">
   <section class="gradient-custom">
-    <div class="pt-4">
+    <div class="pt-5">
       <app-logo></app-logo>
     </div>
     <div class="container py-5">
       <div class="row d-flex justify-content-center align-items-center">
-        <div class="col-12 col-md-8 col-lg-6 col-xl-5" style="width: 600px;">
+        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
           <div>
             <div class="card-body p-5 mt-5 text-center">
-              <h1 class="mb-3 font-bold">Register QR</h1>
-              <mat-form-field class="w-100">
-                <mat-label>Message when QR is scanned (Optional)</mat-label>
-                <textarea matInput [(ngModel)]="message"></textarea>
-              </mat-form-field>
+              <h1 class="mb-4 page-title font-bold">Register QR</h1>
+              <app-info-icon-container [message]="registerQRNameInfo">
+                <mat-form-field class="w-100">
+                  <mat-label>Enter Name (Optional)</mat-label>
+                  <input matInput [(ngModel)]="name" />
+                </mat-form-field>
+              </app-info-icon-container>
+              <app-info-icon-container [message]="registerQRMessageInfo">
+                <mat-form-field class="w-100">
+                  <mat-label>QR Message (Optional)</mat-label>
+                  <textarea matInput [(ngModel)]="message"></textarea>
+                </mat-form-field>
+              </app-info-icon-container>
               <button mat-raised-button color="primary" class="w-100" (click)="registerQR()">Register</button>
             </div>
           </div>

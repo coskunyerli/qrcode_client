@@ -8,6 +8,7 @@
 
 html,
 body {
+
   height: 100%;
   --primary-color: rgb(8, 25, 71);
   --background-color: #ffffff;
@@ -32,4 +33,30 @@ body {
 
 .font-bold {
   font-weight: 800 !important;
+}
+
+.layout-fill {
+  flex: 1 1 auto;
+}
+
+.horizontal-layout {
+  display: flex !important;
+  flex-direction: row !important;
+}
+
+.vertical-layout {
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.overflow-x-auto{
+  overflow-x: auto;
+}
+
+.overflow-y-auto{
+  overflow-y: auto;
+}
+
+.page-title {
+  color: #394460;
 }

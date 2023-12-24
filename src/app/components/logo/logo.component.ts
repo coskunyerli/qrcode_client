@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { AppSettings } from 'src/app/constants';
 
 @Component({
   selector: 'app-logo',
@@ -6,5 +7,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./logo.component.css']
 })
 export class LogoComponent {
+  @Input() showHomePage: boolean = true;
+  accountPath: string = AppSettings.ACCOUNT_PATH;
 
 }

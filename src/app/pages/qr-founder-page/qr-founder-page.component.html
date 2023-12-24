@@ -3,46 +3,65 @@
     <app-logo></app-logo>
   </div>
   <section>
-    <div class="container py-5 mt-5">
+    <div class="container py-5">
       <div class="row d-flex justify-content-center align-items-center">
         <div class="col-12 col-md-8 col-lg-6 col-xl-5">
           <div>
             <div *ngIf="!data || !data.inUse;then notUsedContext else dataContent">here is ignored</div>
             <ng-template #notUsedContext>
-              <div class="card-body text-center">
-                QR Code not in use
+              <div class="card-body p-5  mt-5 text-center">
+                <h1 class="mb-3 font-bold">QR Code not in use</h1>
               </div>
             </ng-template>
             <ng-template #dataContent>
               <ng-template [ngIf]="data?.dataVisibility === userShowType.VISIBLE">
-                <div class="card-body p-5 text-center">
-                  <h1 class="mb-3 font-bold">Detail of User</h1>
-                  <p>{{data?.user?.first_name}}</p>
-                  <p>{{data?.user?.last_name}}</p>
-                  <p>{{data?.user?.phoneNumber}}</p>
-                  <p>{{data?.user?.email}}</p>
-                  <p>{{data?.message}}</p>
+                <div class="card-body p-5 mt-2 text-center">
+                  <h1 class="mb-3 page-title font-bold">Detail of User</h1>
+                  <div class="card-item-container"><span class="card-item-title">First Name: </span><span
+                      class="card-item-info">{{data?.user?.first_name}}</span></div>
+                  <div class="card-item-container"><span class="card-item-title">Last Name: </span><span
+                      class="card-item-info">{{data?.user?.last_name}}</span></div>
+                  <div class="card-item-container"><span class="card-item-title">Phone Number: </span><span
+                      class="card-item-info">{{data?.user?.phoneNumber}}</span></div>
+                  <div class="card-item-container"><span class="card-item-title">Email: </span><span
+                      class="card-item-info">{{data?.user?.email}}</span></div>
+                  <div class="card-item-container"><span class="card-item-title">Message:</span><span
+                      class="card-item-info">{{data?.message}}</span></div>
+
+                  <app-info-icon-container class="d-block mt-4" [message]="founderMessageInfo">
+                    <mat-form-field class="w-100">
+                      <mat-label>Message to qr owner</mat-label>
+                      <textarea rows="5" matInput #founderMessageInput></textarea>
+                    </mat-form-field>
+                  </app-info-icon-container>
+
+                  <button class="w-100" (click)="sendFounderInfo('', founderMessageInput.value)" mat-raised-button color="primary">Send</button>
+                  <span (click)="editQRCode()" class="edit-qr-code">Edit QR Code</span>
                 </div>
               </ng-template>
               <ng-template [ngIf]="data?.dataVisibility === userShowType.INVISIBLE">
-                <div class="card-body p-5 text-center">
-                  <h1 class="mb-1 font-bold">Contact</h1>
+                <div class="card-body p-5  mt-5 text-center">
+                  <h1 class="mb-3 font-bold page-title">Contact</h1>
                   <h3>Data is not visible of user please contact user.</h3>
                   <div *ngIf="!founder">
                     <form class="login-form" #qrFoundedForm="ngForm"
                       (ngSubmit)="sendFounderInfo(contactInput.value,founderMessageInput.value)">
-                      <mat-form-field class="w-100">
-                        <mat-label>Enter Contact</mat-label>
-                        <input matInput #contactInput type="email" id="contact" name="contact" />
-                      </mat-form-field>
-
-                      <mat-form-field class="w-100">
-                        <mat-label>Message to qr owner </mat-label>
-                        <textarea matInput #founderMessageInput></textarea>
-                        <mat-error
-                          *ngIf="founderMessageInput.value.length <= 0 && contactInput.value.length <= 0"> Error </mat-error>
-                      </mat-form-field>
+                      <app-info-icon-container [message]="founderMessageInfo">
+                        <mat-form-field class="w-100">
+                          <mat-label>Enter Contact</mat-label>
+                          <input matInput #contactInput type="email" id="contact" name="contact" />
+                        </mat-form-field>
+                      </app-info-icon-container>
+                      <app-info-icon-container [message]="founderMessageInfo">
+                        <mat-form-field class="w-100">
+                          <mat-label>Message to qr owner </mat-label>
+                          <textarea matInput #founderMessageInput></textarea>
+                          <mat-error *ngIf="founderMessageInput.value.length <= 0 && contactInput.value.length <= 0">
+                            Error </mat-error>
+                        </mat-form-field>
+                      </app-info-icon-container>
                       <button class="w-100" mat-raised-button color="primary" type="submit">Send</button>
+                      <span (click)="editQRCode()" class="edit-qr-code">Edit QR Code</span>
                     </form>
                   </div>
                   <div *ngIf="founder">
@@ -58,13 +77,27 @@
 
               </ng-template>
               <ng-template [ngIf]="data?.dataVisibility===userShowType.MESSAGE_VISIBLE">
-                <div>
-                  <p>{{data?.message}}</p>
+                <div class="card-body p-5  mt-5 text-center">
+                  <h1 class="mb-3 page-title font-bold">Message From User</h1>
+                  <div class="card-item-container"><span class="card-item-title">Message: </span><span
+                      class="card-item-info">{{data?.message}}</span>
+
+                  </div>
+                  <app-info-icon-container class="d-block mt-4" [message]="founderMessageInfo">
+                    <mat-form-field class="w-100">
+                      <mat-label>Message to qr owner</mat-label>
+                      <textarea rows="5" matInput #founderMessageInput></textarea>
+                    </mat-form-field>
+                  </app-info-icon-container>
+
+                  <button class="w-100" (click)="sendFounderInfo('', founderMessageInput.value)" mat-raised-button color="primary">Send</button>
+                  <span (click)="editQRCode()" class="edit-qr-code">Edit QR Code</span>
+
                 </div>
+
+
+
               </ng-template>
-
-
-
             </ng-template>
 
           </div>

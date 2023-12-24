@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { AuthService } from '../../services/auth/auth.service';
 import { Router } from '@angular/router';
-import { AppSettings } from '../../constants';
 import { UserService } from '../../services/user/user.service';
 import { ToastService } from '../../services/toast/toast.service';
+import { InfoMessage } from 'src/app/constants';
+
+
 
 @Component({
   selector: 'app-login',
@@ -13,6 +13,7 @@ import { ToastService } from '../../services/toast/toast.service';
 })
 export class LoginComponent {
   contact: string = ''
+  loginInfo: string = InfoMessage.loginInfo;
 
   constructor(
     private toastService: ToastService,

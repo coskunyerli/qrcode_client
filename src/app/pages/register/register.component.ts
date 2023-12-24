@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CheckQRResponseInterface } from '../../interfaces/checkQRResponseInterface';
-import { AppSettings } from '../../constants';
+import { AppSettings, InfoMessage } from '../../constants';
 import { QRUserRelationDetailResponseInterface } from '../../interfaces/qrUserRelationResponseInterface';
 import { QrService } from '../../services/qr/qr.service';
 import { AuthService } from '../../services/auth/auth.service';
@@ -17,6 +17,11 @@ export class RegisterComponent {
 
   qrID: string = '';
   message: string = '';
+  name: string = '';
+
+  registerQRNameInfo = InfoMessage.registerQRNameInfo
+  registerQRMessageInfo = InfoMessage.registerQRMessageInfo
+
   constructor(
     private route: ActivatedRoute,
     private toastService: ToastService,
@@ -38,9 +43,20 @@ export class RegisterComponent {
             } else {
               this.qrService.checkUserQRRelation(this.qrID).subscribe({
                 next: data => {
+                  let qrRegisterDataString = localStorage.getItem('registerState');
                   if (data.has) {
                     this.router.navigate([AppSettings.ACCOUNT_PATH]);
-                  } else if (localStorage.getItem('registerState') === 'continue') {
+                  } else if (!!qrRegisterDataString) {
+                    let qrRegisterData = { name: '', message: '' };
+                    try {
+                      qrRegisterData = JSON.parse(qrRegisterDataString);
+                    } catch (e) {
+                      qrRegisterData = { name: '', message: '' };
+                    }
+
+                    this.message = qrRegisterData.message;
+                    this.name = qrRegisterData.name;
+
                     // after login update register operation
                     localStorage.removeItem('registerState');
                     this.registerQR();
@@ -70,10 +86,10 @@ export class RegisterComponent {
       next: result => {
         if (!result) {
           localStorage.setItem('redirectUrl', this.router.url);
-          localStorage.setItem('registerState', 'continue');
+          localStorage.setItem('registerState', JSON.stringify({ name: this.name, message: this.message }));
           this.router.navigate(['/login'])
         } else {
-          this.qrService.createUserQRRelation(this.qrID, this.message).subscribe({
+          this.qrService.createUserQRRelation(this.qrID, this.name, this.message).subscribe({
             next: result => {
               if (result) {
                 this.toastService.success('Register', 'QR is registered successfully');

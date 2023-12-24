@@ -5,7 +5,7 @@ import { FoundPersonOTPResponseInterface, User } from '../../interfaces/userInfo
 import { UserShowType } from "../../interfaces/userInfoInterface";
 import { QRUserRelationDetailResponseInterface } from '../../interfaces/qrUserRelationResponseInterface';
 import { ToastService } from '../../services/toast/toast.service';
-import { AppSettings } from 'src/app/constants';
+import { AppSettings, InfoMessage } from 'src/app/constants';
 
 @Component({
   selector: 'app-qr-founder-page',
@@ -16,6 +16,10 @@ export class QRFounderPageComponent {
   userShowType = UserShowType
   data: QRUserRelationDetailResponseInterface | null = null;
   founder: FoundPersonOTPResponseInterface | null = null;
+
+  founderContactInfo = InfoMessage.founderContactInfo
+  founderMessageInfo = InfoMessage.founderMessageInfo
+
   constructor(
     private toastService: ToastService,
     private router: Router, private route: ActivatedRoute, private qrService: QrService
@@ -27,7 +31,6 @@ export class QRFounderPageComponent {
       if (id > -1) {
         this.qrService.getUserQRRelationDetail(id).subscribe({
           next: data => {
-            console.log(data);
             this.data = data;
           }, error: error => {
             this.toastService.error('QR Error', 'QR Detail is not get successfully');
@@ -73,6 +76,14 @@ export class QRFounderPageComponent {
         }
       })
     }
+
+  }
+
+  editQRCode() {
+    if (!this.data?.qrCode) {
+      return;
+    }
+    this.router.navigate([AppSettings.ACCOUNT_PATH], { queryParams: { qrCode: this.data?.qrCode?.id }, replaceUrl: true })
 
   }
 }

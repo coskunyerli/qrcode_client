@@ -1,0 +1,13 @@
+.info-icon {
+    position: absolute;
+    right: 6px;
+    top: 3px;
+    width: 16px;
+    height: 16px;
+    font-size: 16px;
+    color: #909090;
+    cursor: pointer;
+  }
+  .info-icon-container{
+    position: relative;
+  }

@@ -30,6 +30,9 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatDialogModule} from '@angular/material/dialog';
 
 import { ToastrModule } from 'ngx-toastr';
 import { SettingsPageComponent } from './pages/account/settings-page/settings-page.component';
@@ -37,6 +40,8 @@ import { BaseAccountComponent } from './pages/account/base-account/base-account.
 import { BaseToolbarComponent } from './components/base-toolbar/base-toolbar.component';
 import { OtpFieldComponent } from './components/otp-field/otp-field.component';
 import { LogoComponent } from './components/logo/logo.component';
+import { InfoIconComponent } from './components/info-icon/info-icon.component';
+import { ConfirmDialogComponent } from './components/dialogs/confirm/confirm.component';
 
 @NgModule({
   declarations: [
@@ -52,9 +57,14 @@ import { LogoComponent } from './components/logo/logo.component';
     BaseAccountComponent,
     BaseToolbarComponent,
     OtpFieldComponent,
-    LogoComponent
+    LogoComponent,
+    InfoIconComponent,
+    ConfirmDialogComponent
   ],
   imports: [
+    MatDialogModule,
+    MatSidenavModule,
+    MatBottomSheetModule,
     MatTooltipModule,
     MatIconModule,
     MatToolbarModule,

@@ -1,17 +1,35 @@
-<div class="">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 190 40" class="svg-logo mx-auto d-block" width="200" height="70"
-        style="height: auto;">
-        <g data-element="wrapper"
-            transform="translate(39 27) scale(0.35000000000000936)">
-            <g>
-                <g data-element="icon"
-                    transform="scale(0.1639578181592137) translate(1951.1506413179284 -450)">
-                    <path id="color_x5F_1_18_" fill="var(--primary-color)"
-                        d="M479.213,559.213c44.183,0,80-35.817,80-80V120.787c0-44.183-35.817-80-80-80H120.787    c-44.183,0-80,35.817-80,80v358.426c0,44.183,35.817,80,80,80H479.213z M152.971,192.795c0-21.994,17.83-39.824,39.824-39.824    h214.41c21.994,0,39.824,17.83,39.824,39.824v214.41c0,21.994-17.83,39.824-39.824,39.824h-214.41    c-21.994,0-39.824-17.83-39.824-39.824V192.795z">
-                    </path>
-                </g><text transform="translate(-96.59375 0)" fill="var(--primary-color)" font-family="Audiowide"
-                    font-size="64" data-element="company-name" dx="0 0 0 0 0 0 0 0 0">EasyQRTag</text>
+<div class="logo-container">
+    <div [routerLink]="['/']" role="button">
+        <span id="logo-name" style="font-family: Audiowide;">EasyQRTag</span>
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="48"
+            height="48" viewBox="0 0 1080 1080" xml:space="preserve">
+            <desc>Created with Fabric.js 5.2.4</desc>
+            <defs>
+            </defs>
+            <rect x="0" y="0" width="100%" height="100%" fill="transparent"></rect>
+            <g transform="matrix(1 0 0 1 540 540)" id="cf04edd2-18dd-4e7a-b175-806b03d6dc27">
             </g>
-        </g>
-    </svg>
+            <g transform="matrix(1 0 0 1 540 540)" id="e253dbd4-605a-4ae9-aaa3-05b51595c8d7">
+            </g>
+            <g transform="matrix(27.03 0 0 27.03 540 540)">
+                <g style="" vector-effect="non-scaling-stroke">
+                    <g transform="matrix(1 0 0 1 0 0)">
+                        <path
+                            style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(0,0,0); fill-rule: nonzero; opacity: 1;"
+                            vector-effect="non-scaling-stroke" transform=" translate(-141.7, -140.14)"
+                            d="M 136.332 155.18 L 147.285 155.18 C 152.441 155.18 156.73499999999999 150.883 156.73499999999999 145.73000000000002 L 156.73499999999999 134.77700000000002 C 156.74676043277617 132.2098202460385 155.73236011184827 129.74434357782235 153.91735256109973 127.92877265173472 C 152.10234501035117 126.11320172564709 149.637183280182 125.09803629246576 147.07 125.10900000000001 L 136.117 125.10900000000001 C 130.965 125.10900000000001 126.66799999999999 129.406 126.66799999999999 134.56300000000002 L 126.66799999999999 145.51600000000002 C 126.65784960322294 148.08215042260963 127.67275826081338 150.54612861832248 129.48731482124546 152.36068517875455 C 131.30187138167753 154.17524173918662 133.76584957739038 155.19015039677706 136.332 155.18 Z M 152.442 135.418 L 152.442 144.871 C 152.442 148.09 149.648 150.883 146.42600000000002 150.883 L 136.97600000000003 150.883 C 133.53900000000002 150.883 130.96500000000003 148.305 130.96500000000003 144.871 L 130.96500000000003 135.418 C 130.96500000000003 132.199 133.75400000000002 129.406 136.97700000000003 129.406 L 146.42600000000004 129.406 C 149.86300000000006 129.406 152.44100000000003 131.984 152.44100000000003 135.418 Z M 152.442 135.418"
+                            stroke-linecap="round" />
+                    </g>
+                    <g transform="matrix(1 0 0 1 0 0)">
+                        <path
+                            style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(0,0,0); fill-rule: nonzero; opacity: 1;"
+                            vector-effect="non-scaling-stroke" transform=" translate(-141.7, -140.15)"
+                            d="M 135.258 133.703 L 148.145 133.703 L 148.145 146.59 L 135.258 146.59 Z M 135.258 133.703"
+                            stroke-linecap="round" />
+                    </g>
+                </g>
+            </g>
+        </svg>
+    </div>
+    <span *ngIf="showHomePage" [routerLink]="[accountPath]" class="home-page-button">Home Page</span>
 </div>

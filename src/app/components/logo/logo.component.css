@@ -1,0 +1,20 @@
+.logo-container{
+    text-align: center;
+    position: relative;
+}
+.logo-container #logo-name{
+    top: 2px;
+    font-size: 16pt;
+    position: relative;
+    font-family: Audiowide;
+    padding-right: 4px;
+}
+
+.home-page-button{
+    bottom: calc(50% - 30px);
+    font-size: 7pt;
+    position: absolute;
+    left: calc(50% - 10px);
+    text-decoration: underline;
+    cursor: pointer;
+}
